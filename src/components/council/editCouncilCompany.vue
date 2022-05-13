@@ -6,15 +6,9 @@
       <p
         class="font-general-medium text-center text-primary-dark dark:text-primary-light text-lg sm:text-2xl mb-8"
       >
-        Add Company
+        Edit Company
       </p>
       <div>
-        <label
-          class="block my-3 text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
-          for="name"
-          >Add Logo</label
-        >
-        <UploadImg @src="getimg($event)" />
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           id="name"
@@ -163,19 +157,20 @@
       </div>
       <div>
         <button
-          @click="add_council_company($route.query.id)"
+          @click="
+            edit_council_company($route.query.id, $route.query.company_id)
+          "
           class="px-4 py-2.5 w-full text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
           type="button"
           aria-label="Signup"
         >
-          Add
+          Save
         </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import UploadImg from "../projects/UploadImg2";
 import instance from "../../store/axiosConfig.js";
 import vSelect from "vue-select";
 export default {
@@ -192,7 +187,6 @@ export default {
         legal_status: [],
         issued_by: [],
       },
-      company_council_logo: "",
       country_status: "Country",
       city_status: "City",
       area_status: "Area",
@@ -202,11 +196,15 @@ export default {
       landline_number: "",
       trade_license_number: "",
       selected_activities: null,
+      company_activity_id: null,
       legal_status: null,
       issued_by: null,
       country: null,
       city: null,
       area: null,
+      country_id: null,
+      city_id: null,
+      area_id: null,
       person_in_charge_name: "",
       person_in_charge_designation: "",
       person_in_charge_email: "",
@@ -216,7 +214,6 @@ export default {
   },
   components: {
     vSelect,
-    UploadImg,
   },
   computed: {
     filteroptions() {
@@ -232,45 +229,69 @@ export default {
     getimg(value) {
       this.company_council_logo = value;
     },
-    add_council_company(council_id) {
+    get_council_company(council_company_id) {
+      instance
+        .get("public/council_company_details/" + council_company_id)
+        .then((res) => {
+          console.log(res.data);
+          this.business_name = res.data.business_name;
+          this.email = res.data.email;
+          this.phone_number = res.data.phone_number;
+          this.landline_number = res.data.landline_number;
+          this.trade_license_number = res.data.trade_license_number;
+          this.selected_activities = res.data.company_activity.title;
+          this.company_activity_id = res.data.company_activity.id;
+          this.legal_status = res.data.legal_status;
+          this.issued_by = res.data.issued_by;
+          this.country = res.data.country.name;
+          this.city = res.data.city.name;
+          this.area = res.data.area.name;
+          this.country_id = res.data.country.id;
+          this.city_id = res.data.city.id;
+          this.area_id = res.data.area.id;
+          this.person_in_charge_name = res.data.person_in_charge_name;
+          this.person_in_charge_designation =
+            res.data.person_in_charge_designation;
+          this.person_in_charge_email = res.data.person_in_charge_email;
+          this.person_in_charge_mobile = res.data.person_in_charge_mobile;
+          this.person_in_charge_country = res.data.person_in_charge_country;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    edit_council_company(council_id, council_company_id) {
       try {
-        let formData = new FormData();
-        formData.append("logo_file", this.company_council_logo);
-        formData.append("business_name", this.business_name);
-        formData.append("email", this.email);
-        formData.append("phone_number", this.phone_number);
-        formData.append("landline_number", this.landline_number);
-        formData.append("trade_license_number", this.trade_license_number);
-        formData.append("company_activity_id", this.selected_activities);
-        formData.append("legal_status", this.legal_status);
-        formData.append("issued_by", this.issued_by);
-        formData.append("country_id", this.country);
-        formData.append("city_id", this.city);
-        formData.append("area_id", this.area);
-        formData.append("person_in_charge_name", this.person_in_charge_name);
-        formData.append(
-          "person_in_charge_designation",
-          this.person_in_charge_designation
-        );
-        formData.append("person_in_charge_email", this.person_in_charge_email);
-        formData.append(
-          "person_in_charge_mobile",
-          this.person_in_charge_mobile
-        );
-        formData.append(
-          "person_in_charge_country",
-          this.person_in_charge_country
-        );
         instance
-          .post("council/council_company/" + council_id, formData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
+          .put(
+            "council/council_company/" + council_id + "/" + council_company_id,
+            {
+              business_name: this.business_name,
+              email: this.email,
+              phone_number: this.phone_number,
+              landline_number: this.landline_number,
+              trade_license_number: this.trade_license_number,
+              company_activity_id: this.company_activity_id,
+              legal_status: this.legal_status,
+              issued_by: this.issued_by,
+              country_id: this.country_id,
+              city_id: this.city_id,
+              area_id: this.area_id,
+              person_in_charge_name: this.person_in_charge_name,
+              person_in_charge_designation: this.person_in_charge_designation,
+              person_in_charge_email: this.person_in_charge_email,
+              person_in_charge_mobile: this.person_in_charge_mobile,
+              person_in_charge_country: this.person_in_charge_country,
+            }
+          )
           .then((res) => {
             console.log(res.data);
             this.$router.push({
-              name: "Council",
+              path: "/council",
+              query: {
+                id: this.$route.query.id,
+                name: this.$route.query.name,
+              },
             });
           });
       } catch (err) {
@@ -366,6 +387,7 @@ export default {
     },
   },
   created() {
+    this.get_council_company(this.$route.query.company_id);
     this.get_legal_status();
     this.get_issued_by();
     this.get_country();

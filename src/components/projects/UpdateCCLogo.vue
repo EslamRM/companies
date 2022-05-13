@@ -53,7 +53,7 @@
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="h-6 w-4"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -92,17 +92,20 @@ export default {
       InitialArray: [],
       RealArray: [],
       temp: "",
-      logo: null,
+      cclogo: null,
       updatedLogo: null,
       mapMarkers: {},
     };
+  },
+  props: {
+    company_id: String,
   },
   components: {
     Cropper,
   },
   methods: {
     getimglogo() {
-      this.$emit("logo", this.updatedLogo);
+      this.$emit("cclogo", this.updatedLogo);
     },
     chooseFile() {
       this.$refs.file.click();
@@ -113,24 +116,27 @@ export default {
       this.ShowChooseFile = true;
     },
     saveImage() {
-      this.update_logo(this.$route.query.id);
+      this.update_cclogo(this.$route.query.id, this.company_id);
       this.before_crop = true;
       this.isCropped = false;
       this.ShowChooseFile = true;
     },
-    update_logo(id) {
+    update_cclogo(council_id, company_id) {
       let formData = new FormData();
-      formData.append("file", this.logo);
+      formData.append("file", this.cclogo);
       instance
-        .post("/council/change_council_logo/" + id, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
+        .post(
+          "/council/change_company_logo/" + council_id + "/" + company_id,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        )
         .then((res) => {
           console.log(res.data);
           this.updatedLogo = res.data.logo_image_path;
-          localStorage.setItem("logo", res.data.logo_image_path);
           this.getimglogo();
         })
         .catch((err) => {
@@ -138,12 +144,9 @@ export default {
         });
     },
     change({ canvas }) {
-      // var img = canvas.toDataURL("image/png");
-
-      // var context = canvas.getContext("2d");
       canvas.toBlob((blob) => {
         this.blobUrl = URL.createObjectURL(blob);
-        this.logo = new File(
+        this.cclogo = new File(
           [blob],
           "image",
           {
@@ -298,17 +301,17 @@ export default {
   margin-left: 2px;
 }
 .upload {
-  width: 40px;
-  height: 40px;
-  background: #fff;
+  width: 30px;
+  height: 30px;
+  background: #eee;
   color: #00f;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: 20px;
-  margin-top: -70px;
+  right: 6px;
+  top: 110px;
 }
 .img-container {
   background: #0000004f;

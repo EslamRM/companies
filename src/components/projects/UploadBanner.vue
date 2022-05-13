@@ -153,19 +153,19 @@ export default {
         });
     },
     change({ canvas }) {
-      // var img = canvas.toDataURL("image/png");
-
-      // var context = canvas.getContext("2d");
       canvas.toBlob((blob) => {
         this.blobUrl = URL.createObjectURL(blob);
-        this.banner = new File([blob], "image", {
-          lastModified: new Date().getTime(),
-          type: blob.type,
-        });
+        this.banner = new File(
+          [blob],
+          "image",
+          {
+            lastModified: new Date().getTime(),
+            type: blob.type,
+          },
+          "image/jpeg",
+          0.3
+        );
       });
-    },
-    showAlert() {
-      this.$swal("Hello Vue world!!!");
     },
     chooseImage($event) {
       const file = $event.target.files[0];

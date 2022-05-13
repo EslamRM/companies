@@ -1,3 +1,75 @@
+.action {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #888;
+}
+.action .options {
+  position: absolute;
+  top: 20px;
+  right: -50px;
+  padding: 10px;
+  background: #fff;
+  z-index: 2;
+}
+.show {
+  display: block !important;
+}
+.dropdown {
+  font-size: 14px !important;
+}
+.select::-ms-expand {
+  display: none;
+  padding: 10px;
+}
+.dropdown .vs__dropdown-menu {
+  height: auto;
+  overflow-y: auto;
+  float: left;
+  position: absolute;
+  transform: scale(1, 1);
+  transition: transform ease 150ms;
+  transform-origin: top;
+  background-color: #ffffff;
+  border-radius: 6px;
+  border: solid 1px #eef0f1;
+  box-shadow: 0 20px 40px 0 rgb(0 0 0 / 5%);
+  /* padding: 15px 0; */
+  /* z-index: 20; */
+  margin-top: 10px;
+  max-height: 360px;
+  width: 100%;
+  /* max-width: 332px; */
+}
+.dropdown .vs__dropdown-menu > * {
+  transform: scale(1, 1);
+  transition: transform ease 150ms;
+  transform-origin: top;
+  padding: 15.5px 24px;
+  border-bottom: 1px solid #eef0f1;
+  font-size: 0.875rem;
+  line-height: 24px;
+  box-sizing: border-box;
+  color: #2b2d2e;
+  display: block;
+  text-decoration: none;
+  text-align: left;
+  background: none;
+}
+.dropdown .vs__dropdown-menu > *:hover {
+  font-weight: 600;
+  color: #213a63;
+}
+.dropdown .vs__dropdown-toggle {
+  border-radius: 10px;
+  border: solid 1px #b6b8b9;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+.dropdown .vs__search {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
 @media screen and (max-width: 1280px) {
   .search-icon {
     width: 40px !important;

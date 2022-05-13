@@ -22,7 +22,7 @@ export default {
     GETCOMPANY({ commit }, id) {
       return new Promise((resolve, reject) => {
         instance
-          .get("/frontend/companies/" + id)
+          .get("/public/companies/" + id)
           .then((res) => {
             commit("GET_COMPANY", res.data.data);
             resolve(res);

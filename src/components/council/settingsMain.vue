@@ -3,7 +3,14 @@
     <div
       class="mx-auto text-dark grid md:grid-cols-4 sm:grid-cols-2 gap-3 my-16 container"
     >
-      <router-link to="/council/settings" class="" exact>
+      <router-link
+        :to="{
+          path: '/council/settings',
+          query: { name: $route.query.name, id: $route.query.id },
+        }"
+        class=""
+        exact
+      >
         <div class="card2 indexCard" role="button">
           <div class="p-3 pt-0 text-center card2-body">
             <h6 class="mb-0 text-center">Council Info</h6>
@@ -12,7 +19,13 @@
           </div>
         </div>
       </router-link>
-      <router-link to="/council/settings/add-company" class="">
+      <router-link
+        :to="{
+          path: '/council/settings/add-company',
+          query: { name: $route.query.name, id: $route.query.id },
+        }"
+        class=""
+      >
         <div class="card2 indexCard" role="button">
           <div class="p-3 pt-0 text-center card2-body">
             <h6 class="mb-0 text-center">Add Company</h6>
@@ -21,7 +34,12 @@
           </div>
         </div>
       </router-link>
-      <router-link to="/council/settings/add-member">
+      <router-link
+        :to="{
+          path: '/council/settings/add-member',
+          query: { name: $route.query.name, id: $route.query.id },
+        }"
+      >
         <div class="card2 indexCard" role="button">
           <div class="p-3 pt-0 text-center card2-body">
             <h6 class="mb-0 text-center">Add Member</h6>
@@ -30,7 +48,12 @@
           </div>
         </div>
       </router-link>
-      <router-link to="/council/settings/add-events">
+      <router-link
+        :to="{
+          path: '/council/settings/add-events',
+          query: { name: $route.query.name, id: $route.query.id },
+        }"
+      >
         <div class="card2 indexCard" role="button">
           <div class="p-3 pt-0 text-center card2-body">
             <h6 class="mb-0 text-center">Add Events</h6>
@@ -39,11 +62,16 @@
           </div>
         </div>
       </router-link>
-      <router-link to="/council/settings/add-gallary">
+      <router-link
+        :to="{
+          path: '/council/settings/add-media',
+          query: { name: $route.query.name, id: $route.query.id },
+        }"
+      >
         <div class="card2 indexCard" role="button">
           <div class="p-3 pt-0 text-center card2-body">
-            <h6 class="mb-0 text-center">Add Gallery</h6>
-            <span class="text-xs">add Gallery Image</span>
+            <h6 class="mb-0 text-center">Add Media</h6>
+            <span class="text-xs">add Media Element</span>
             <h5 class="mb-0"></h5>
           </div>
         </div>

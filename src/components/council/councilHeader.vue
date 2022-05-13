@@ -7,7 +7,7 @@
     />
     <UpdateBanner @banner="getBanner($event)" class="updateBanner" />
     <UpdateLogo @logo="getLogo($event)" class="updatelogo" />
-    <div class="mx-4 card2 card2-body blur2 shadow-blur mt-n4">
+    <div class="mx-4 card2 card2-body blur2 shadow-blur mt-n3">
       <div class="row2 gx-4">
         <div class="grid grid-cols-2 lg:grid-cols-2">
           <div class="avatar avatar-xl relative mx-auto">
@@ -22,13 +22,13 @@
               <h5
                 class="mb-1 font-weight-bold text-dark font-general-medium txt-mobile sm:text-sm md:text-md"
               >
-                Council Title
+                {{ $route.query.name }}
               </h5>
-              <p
+              <!-- <p
                 class="text-sm font-weight-bold text-dark font-general-medium txt-mobile sm:text-sm"
               >
                 Council Subtitle
-              </p>
+              </p> -->
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@
                   data-bs-toggle="tab"
                   :to="{
                     path: '/council/',
-                    query: { id: $route.query.id },
+                    query: { name: $route.query.name, id: $route.query.id },
                   }"
                   role="tab"
                   aria-selected="true"
@@ -61,7 +61,7 @@
                   data-bs-toggle="tab"
                   :to="{
                     path: '/council/our-members',
-                    query: { id: $route.query.id },
+                    query: { name: $route.query.name, id: $route.query.id },
                   }"
                   role="tab"
                   aria-selected="true"
@@ -77,7 +77,7 @@
                   data-bs-toggle="tab"
                   :to="{
                     path: '/council/events',
-                    query: { id: $route.query.id },
+                    query: { name: $route.query.name, id: $route.query.id },
                   }"
                   role="tab"
                   aria-selected="false"
@@ -92,14 +92,14 @@
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
                   :to="{
-                    path: '/council/gallary',
-                    query: { id: $route.query.id },
+                    path: '/council/media',
+                    query: { name: $route.query.name, id: $route.query.id },
                   }"
                   role="tab"
                   aria-selected="false"
                   ><span
                     class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
-                    >Gallery</span
+                    >Media</span
                   ></router-link
                 >
               </li>
@@ -107,7 +107,10 @@
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
-                  to="/council/contact-us"
+                  :to="{
+                    path: '/council/contact-us',
+                    query: { name: $route.query.name, id: $route.query.id },
+                  }"
                   role="tab"
                   aria-selected="false"
                   ><span
@@ -120,7 +123,10 @@
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
-                  to="/council/about-us"
+                  :to="{
+                    path: '/council/about-us',
+                    query: { name: $route.query.name, id: $route.query.id },
+                  }"
                   role="tab"
                   aria-selected="false"
                   ><span
@@ -133,7 +139,10 @@
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
-                  to="/council/settings"
+                  :to="{
+                    path: '/council/settings',
+                    query: { name: $route.query.name, id: $route.query.id },
+                  }"
                   role="tab"
                   aria-selected="false"
                   ><span

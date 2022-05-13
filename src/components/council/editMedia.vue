@@ -3,7 +3,7 @@
     <p
       class="font-general-medium text-center text-primary-dark dark:text-primary-light text-lg sm:text-2xl mb-8"
     >
-      Add Media
+      Edit Media
     </p>
     <input
       class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
@@ -19,26 +19,19 @@
       placeholder="Description"
       v-model="description"
     />
-    <label
-      class="block my-3 text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
-      for="name"
-      >Add Image</label
-    >
-    <UploadImg @file="getimg($event)" />
     <div>
       <button
-        @click="add_media($route.query.id)"
+        @click="edit_media($route.query.id, $route.query.media_id)"
         class="px-4 py-2.5 w-full mt-6 text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
         type="button"
         aria-label="Signup"
       >
-        Add
+        Save
       </button>
     </div>
   </div>
 </template>
 <script>
-import UploadImg from "../projects/UploadImg";
 import instance from "../../store/axiosConfig.js";
 export default {
   name: "add-media",
@@ -46,26 +39,29 @@ export default {
     return {
       title: null,
       description: null,
-      file: null,
     };
-  },
-  components: {
-    UploadImg,
   },
   methods: {
     getimg(value) {
       this.file = value;
     },
-    add_media(id) {
-      let formData = new FormData();
-      formData.append("title", this.title);
-      formData.append("description", this.description);
-      formData.append("file", this.file);
+    get_media(id) {
       instance
-        .post("/council/add_media_image/" + id, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+        .get("/public/council_media_details/" + id)
+        .then((res) => {
+          console.log(res.data);
+          this.title = res.data.title;
+          this.description = res.data.description;
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    },
+    edit_media(council_id, media_id) {
+      instance
+        .put("/council/update_media/" + council_id + "/" + media_id, {
+          title: this.title,
+          description: this.description,
         })
         .then((res) => {
           console.log(res.data);
@@ -78,6 +74,9 @@ export default {
           console.log(err.message);
         });
     },
+  },
+  created() {
+    this.get_media(this.$route.query.media_id);
   },
 };
 </script>

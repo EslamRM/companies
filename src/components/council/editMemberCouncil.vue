@@ -7,16 +7,10 @@
         <p
           class="font-general-medium text-center text-primary-dark dark:text-primary-light text-lg sm:text-2xl mb-8"
         >
-          Add Member
+          Edit Member
         </p>
       </div>
       <div>
-        <label
-          class="block my-3 text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
-          for="name"
-          >Add Logo</label
-        >
-        <UploadImg @src="getimg($event)" />
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           type="text"
@@ -101,13 +95,13 @@
       </div>
       <div>
         <button
-          @click="add_council_member($route.query.id)"
+          @click="edit_council_member($route.query.id, $route.query.member_id)"
           title="Add"
           class="px-4 py-2.5 w-full text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
           type="button"
           aria-label="Signup"
         >
-          Add
+          Save
         </button>
       </div>
     </div>
@@ -115,10 +109,10 @@
 </template>
 <script>
 import instance from "../../store/axiosConfig.js";
-import UploadImg from "../projects/UploadImg2";
 import vSelect from "vue-select";
 export default {
   name: "Settings",
+  isCropped: false,
   data() {
     return {
       options: {
@@ -136,47 +130,80 @@ export default {
       website: null,
       mobile: null,
       designation: null,
-      profile_image: null,
       country: null,
       city: null,
       area: null,
+      country_id: null,
+      city_id: null,
+      area_id: null,
     };
   },
   components: {
     vSelect,
-    UploadImg,
+  },
+  computed: {
+    filteroptions() {
+      return this.options.activities.filter((item) => {
+        return this.selected_activities
+          .toLowerCase()
+          .split(" ")
+          .every((v) => item.toLowerCase().includes(v));
+      });
+    },
   },
   methods: {
     getimg(value) {
-      this.profile_image = value;
+      this.company_council_logo = value;
     },
-    add_council_member(council_id) {
+    get_council_member(council_member_id) {
       instance
-        .post("council/council_member/" + council_id, {
-          name: this.name,
-          dob: this.dob,
-          nationality: this.nationality,
-          email: this.email,
-          mobile: this.mobile,
-          designation: this.designation,
-          profile_image: this.profile_image,
-          country_id: this.country,
-          city_id: this.city,
-          area_id: this.area,
-        })
+        .get("public/council_member_details/" + council_member_id)
         .then((res) => {
           console.log(res.data);
-          this.$router.push({
-            path: "/council/our-members",
-            query: {
-              id: this.$route.query.id,
-              name: this.$route.query.name,
-            },
-          });
+          this.name = res.data.name;
+          this.dob = res.data.dob;
+          this.nationality = res.data.nationality;
+          this.email = res.data.email;
+          this.mobile = res.data.mobile;
+          this.designation = res.data.designation;
+          this.country = res.data.country.name;
+          this.city = res.data.city.name;
+          this.area = res.data.area.name;
+          this.country_id = res.data.country.id;
+          this.city_id = res.data.city.id;
+          this.area_id = res.data.area.id;
         })
         .catch((err) => {
-          console.log(err.message);
+          console.log(err);
         });
+    },
+    edit_council_member(council_id, member_id) {
+      try {
+        instance
+          .put("council/council_member/" + council_id + "/" + member_id, {
+            name: this.name,
+            dob: this.dob,
+            nationality: this.nationality,
+            email: this.email,
+            mobile: this.mobile,
+            designation: this.designation,
+            country_id: this.country_id,
+            city_id: this.city_id,
+            area_id: this.area_id,
+          })
+          .then((res) => {
+            console.log(res.data);
+            this.$router.push({
+              path: "/council/our-members",
+              query: {
+                id: this.$route.query.id,
+                name: this.$route.query.name,
+              },
+            });
+          });
+      } catch (err) {
+        console.log(err.message);
+      }
     },
     get_country() {
       instance
@@ -230,13 +257,18 @@ export default {
     },
   },
   created() {
+    this.get_council_member(this.$route.query.member_id);
     this.get_country();
+    this.$store.state.hideConfigButton = true;
+    this.$store.state.showNavbar = false;
+    this.$store.state.showSidenav = false;
+    this.$store.state.showFooter = false;
   },
 };
 </script>
 <style>
 .dropdown {
-  font-size: 0.875rem;
+  font-size: 14px !important;
 }
 .select::-ms-expand {
   display: none;

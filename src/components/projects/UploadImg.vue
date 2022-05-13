@@ -1,14 +1,12 @@
 <template>
   <div>
     <div class="uploadWrap">
-      <div class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md">
+      <div
+        class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
+      >
         <div>
           <div v-if="isCropped">
-            <Cropper
-              :restrictions="pixelsRestriction"
-              :src="img"
-              @change="change"
-            ></Cropper>
+            <Cropper :src="img" @change="change"></Cropper>
             <div class="save-image flex justify-between">
               <button
                 class="text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
@@ -79,12 +77,16 @@ export default {
       RealArray: [],
       temp: "",
       mapMarkers: {},
+      img_file: null,
     };
   },
   components: {
     Cropper,
   },
   methods: {
+    getimgfile() {
+      this.$emit("file", this.img_file);
+    },
     chooseFile() {
       this.$refs.file.click();
     },
@@ -94,30 +96,29 @@ export default {
       this.ShowChooseFile = true;
     },
     saveImage() {
-      this.InitialArray = [...this.InitialArray, this.temp];
-      this.RealArray = [...this.RealArray, this.file];
-
       this.before_crop = true;
       this.isCropped = false;
       this.ShowChooseFile = true;
+      this.getimgfile();
     },
-    change({ coordinates, canvas }) {
-      var img = canvas.toDataURL("image/png");
-
-      var context = canvas.getContext("2d");
+    change({ canvas }) {
       canvas.toBlob((blob) => {
-        var self = this;
-
-        var objectURL = URL.createObjectURL(blob);
-
-        self.temp = objectURL;
-        self.file = blob;
-      }, "image/wbmp");
+        this.blobUrl = URL.createObjectURL(blob);
+        this.img_file = new File(
+          [blob],
+          "image",
+          {
+            lastModified: new Date().getTime(),
+            type: blob.type,
+          },
+          "image/jpeg",
+          0.3
+        );
+      });
     },
     chooseImage($event) {
       const file = $event.target.files[0];
       this.img = URL.createObjectURL(file);
-
       var reader = new FileReader();
       var self = this;
       //Read the contents of Image File.

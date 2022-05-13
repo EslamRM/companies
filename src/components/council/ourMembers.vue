@@ -18,10 +18,64 @@
               <div class="relative">
                 <a class="shadow-xl block rounded-xl"
                   ><img
-                    :src="member.profile_image"
+                    :src="cm_logo ? cm_logo : member.profile_image"
                     alt="img-blur-shadow"
-                    class="shadow img-fluid rounded-xl"
+                    class="shadow img-fluid rounded-xl mx-auto"
                 /></a>
+                <div class="action">
+                  <div
+                    class="action-icon"
+                    role="button"
+                    @click="selectItem(member.id)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="options shadow-xl rounded-xl hidden"
+                    :class="{ show: member.id === activeItem && isshow }"
+                  >
+                    <ul class="list-group">
+                      <li
+                        class="pt-0 text-sm border-0 list-group-item ps-0 text-dark mb-2"
+                      >
+                        <router-link
+                          :to="{
+                            path: '/council/settings/edit-member',
+                            query: {
+                              id: $route.query.id,
+                              name: $route.query.name,
+                              member_id: member.id,
+                              member_name: member.name,
+                            },
+                          }"
+                          >Edit</router-link
+                        >
+                      </li>
+                      <li
+                        class="pt-0 text-sm border-0 list-group-item ps-0 text-dark"
+                      >
+                        <router-link to="">Delete</router-link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <UpdateCMLogo
+                  @cmlogo="getLogo($event)"
+                  :member_id="member.id"
+                />
               </div>
               <div class="px-1 pb-0 card2-body">
                 <ul class="list-group">
@@ -65,14 +119,28 @@
 </template>
 <script>
 import instance from "../../store/axiosConfig.js";
+import UpdateCMLogo from "../projects/UpdateCMLogo";
 export default {
   name: "our-members",
   data() {
     return {
       members: null,
+      activeItem: null,
+      isshow: false,
+      cm_logo: null,
     };
   },
+  components: {
+    UpdateCMLogo,
+  },
   methods: {
+    getLogo(value) {
+      this.cm_logo = value;
+    },
+    selectItem(i) {
+      this.activeItem = i;
+      this.isshow = !this.isshow;
+    },
     get_council_members(id) {
       instance
         .get("public/council_member/" + id)

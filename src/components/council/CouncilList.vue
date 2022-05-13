@@ -16,13 +16,17 @@
             <div class="card2 card-blog card-plain">
               <div class="relative">
                 <router-link
-                  :to="{ path: '/council', query: { id: council.id } }"
+                  :to="{
+                    path: '/council',
+                    query: { name: council.council_name, id: council.id },
+                  }"
                   class="shadow-xl block rounded-xl"
                   ><img
                     :src="council.logo_image_path"
                     alt="img-blur-shadow"
                     class="shadow img-fluid rounded-xl"
-                /></router-link>
+                  />
+                </router-link>
               </div>
               <div class="px-1 pb-0 card2-body">
                 <ul class="list-group">

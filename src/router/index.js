@@ -53,7 +53,7 @@ const router = new Router({
           component: () => import("../components/council/events.vue"),
         },
         {
-          path: "gallary",
+          path: "media",
           component: () => import("../components/council/gallary.vue"),
         },
         {
@@ -88,8 +88,26 @@ const router = new Router({
               component: () => import("../components/council/addEvents.vue"),
             },
             {
-              path: "add-gallary",
+              path: "add-media",
               component: () => import("../components/council/addGallary.vue"),
+            },
+            {
+              path: "edit-company",
+              component: () =>
+                import("../components/council/editCouncilCompany.vue"),
+            },
+            {
+              path: "edit-member",
+              component: () =>
+                import("../components/council/editMemberCouncil.vue"),
+            },
+            {
+              path: "edit-media",
+              component: () => import("../components/council/editMedia.vue"),
+            },
+            {
+              path: "edit-event",
+              component: () => import("../components/council/editEvent.vue"),
             },
           ],
         },

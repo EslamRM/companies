@@ -3,7 +3,7 @@
     <p
       class="font-general-medium text-center text-primary-dark dark:text-primary-light text-lg sm:text-2xl mb-8"
     >
-      Add Events
+      Edit Events
     </p>
     <input
       class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
@@ -33,20 +33,14 @@
       placeholder="Linke"
       v-model="link"
     />
-    <label
-      class="block my-3 text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
-      for="name"
-      >Add Image</label
-    >
-    <UploadImg @file="getimg($event)" />
     <div>
       <button
-        @click="add_events($route.query.id)"
+        @click="edit_event($route.query.id, $route.query.event_id)"
         class="px-4 py-2.5 w-full mt-6 text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
         type="button"
         aria-label="Signup"
       >
-        Add
+        Save
       </button>
     </div>
   </div>
@@ -62,28 +56,30 @@ export default {
       location: null,
       event_date: null,
       link: null,
-      image: null,
     };
   },
-  components: {
-    UploadImg,
-  },
   methods: {
-    getimg(value) {
-      this.image = value;
-    },
-    add_events(id) {
-      let formData = new FormData();
-      formData.append("name", this.name);
-      formData.append("location", this.location);
-      formData.append("event_date", this.event_date);
-      formData.append("link", this.link);
-      formData.append("image", this.image);
+    get_event(id) {
       instance
-        .post("/council/add_event/" + id, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+        .get("/public/council_event_details/" + id)
+        .then((res) => {
+          console.log(res.data);
+          this.name = res.data.name;
+          this.location = res.data.location;
+          this.event_date = res.data.event_date;
+          this.link = res.data.link;
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    },
+    edit_event(council_id, event_id) {
+      instance
+        .put("/council/update_event/" + council_id + "/" + event_id, {
+          name: this.name,
+          location: this.location,
+          event_date: this.event_date,
+          link: this.link,
         })
         .then((res) => {
           console.log(res.data);
@@ -96,6 +92,9 @@ export default {
           console.log(err.message);
         });
     },
+  },
+  created() {
+    this.get_event(this.$route.query.event_id);
   },
 };
 </script>

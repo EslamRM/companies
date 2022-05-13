@@ -18,11 +18,65 @@
               <div class="relative">
                 <a class="shadow-xl block rounded-xl"
                   ><img
-                    :src="company.logo_image_path"
+                    :src="cc_logo ? cc_logo : company.logo_image_path"
                     alt="img-blur-shadow"
                     class="shadow img-fluid rounded-xl"
                   />
                 </a>
+                <div class="action">
+                  <div
+                    class="action-icon"
+                    role="button"
+                    @click="selectItem(company.id)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="options shadow-xl rounded-xl hidden"
+                    :class="{ show: company.id === activeItem && isshow }"
+                  >
+                    <ul class="list-group">
+                      <li
+                        class="pt-0 text-sm border-0 list-group-item ps-0 text-dark mb-2"
+                      >
+                        <router-link
+                          :to="{
+                            path: '/council/settings/edit-company',
+                            query: {
+                              id: $route.query.id,
+                              name: $route.query.name,
+                              company_id: company.id,
+                              company_name: company.business_name,
+                            },
+                          }"
+                          >Edit</router-link
+                        >
+                      </li>
+                      <li
+                        class="pt-0 text-sm border-0 list-group-item ps-0 text-dark"
+                      >
+                        <router-link to="">Delete</router-link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <UpdateCCLogo
+                  @cclogo="getLogo($event)"
+                  :company_id="company.id"
+                />
               </div>
               <div class="px-1 pb-0 card2-body">
                 <ul class="list-group">
@@ -50,11 +104,6 @@
                     SmartID,BusinessID,Gold Star
                   </li>
                 </ul>
-                <!-- <a href="javascript:;"><h5>Modern</h5></a>
-                <p class="mb-4 text-sm">
-                  As Uber works through a huge amount of internal management
-                  turmoil.
-                </p> -->
               </div>
             </div>
           </div>
@@ -65,14 +114,28 @@
 </template>
 <script>
 import instance from "../../store/axiosConfig.js";
+import UpdateCCLogo from "../projects/UpdateCCLogo";
 export default {
   name: "our-companies",
   data() {
     return {
       council_companies: null,
+      activeItem: null,
+      isshow: false,
+      cc_logo: null,
     };
   },
+  components: {
+    UpdateCCLogo,
+  },
   methods: {
+    getLogo(value) {
+      this.cc_logo = value;
+    },
+    selectItem(i) {
+      this.activeItem = i;
+      this.isshow = !this.isshow;
+    },
     get_council_companies(id) {
       instance
         .get("public/council_company/" + id)
