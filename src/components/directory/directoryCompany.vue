@@ -8,7 +8,7 @@
         src="../../assets/img/c4.jpg"
         alt="Sunset in the mountains"
       />
-      <UpdateLogo class="updateLogo" />
+      <UpdateLogo />
       <div class="px-3 sm:px-4 py-3 sm:py-6 leading-none">
         <div
           class="font-general-semibold leading-normal text-sm sm:text-md md:text-base lg:text-lg xl:text-xl text-ternary-dark dark:text-ternary-light font-semibold mb-2"
@@ -92,11 +92,12 @@ export default {
 };
 </script>
 <style>
-.updateLogo .upload {
+.update_dlogo .upload {
   width: 35px;
   height: 35px;
   right: 10px;
   margin-top: -52px;
+  top: 0;
 }
 .icon-size {
   width: 15px;

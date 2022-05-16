@@ -23,7 +23,7 @@
                     class="shadow img-fluid rounded-xl"
                   />
                 </a>
-                <div class="action">
+                <div class="action" v-if="councilId == $route.query.id">
                   <div
                     class="action-icon"
                     role="button"
@@ -74,6 +74,8 @@
                   </div>
                 </div>
                 <UpdateCCLogo
+                  v-if="councilId == $route.query.id"
+                  class="update_clogo"
                   @cclogo="getLogo($event)"
                   :company_id="company.id"
                 />
@@ -115,6 +117,7 @@
 <script>
 import instance from "../../store/axiosConfig.js";
 import UpdateCCLogo from "../projects/UpdateCCLogo";
+import { mapState } from "vuex";
 export default {
   name: "our-companies",
   data() {
@@ -127,6 +130,14 @@ export default {
   },
   components: {
     UpdateCCLogo,
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    ...mapState({
+      councilId: (state) => state.auth.council_id,
+    }),
   },
   methods: {
     getLogo(value) {
@@ -161,13 +172,13 @@ export default {
   right: 10px;
   top: 10px;
 }
-.updatelogo .upload {
+.update_clogo .upload {
   width: 25px;
   height: 25px;
   right: 5px;
-  margin-top: -3px;
+  top: 110px;
 }
-.updatelogo .upload svg {
+.update_clogo .upload svg {
   width: 15px;
 }
 .img-fluid {

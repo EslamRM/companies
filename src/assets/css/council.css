@@ -65,7 +65,6 @@
   padding: 1rem;
 }
 .card2 {
-  position: relative;
   display: flex;
   flex-direction: column;
   min-width: 0;

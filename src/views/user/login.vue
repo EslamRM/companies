@@ -83,7 +83,9 @@ export default {
         })
         .then((res) => {
           console.log(res.data);
-          this.$router.push({ name: "Settings" });
+          this.$router.push({
+            name: "Home",
+          });
         })
         .catch((err) => {
           this.error = err.message;

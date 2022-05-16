@@ -23,7 +23,7 @@
                     class="shadow img-fluid rounded-xl"
                   />
                 </a>
-                <div class="action">
+                <div class="action" v-if="userId == $route.query.id">
                   <div
                     class="action-icon"
                     role="button"
@@ -68,7 +68,12 @@
                       <li
                         class="pt-0 text-sm border-0 list-group-item ps-0 text-dark"
                       >
-                        <router-link to="">Delete</router-link>
+                        <button
+                          type="button"
+                          @click="del_event($route.query.id, event.id)"
+                        >
+                          Delete
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -110,6 +115,7 @@
 </template>
 <script>
 import instance from "../../store/axiosConfig.js";
+import { mapState } from "vuex";
 export default {
   name: "events",
   data() {
@@ -119,10 +125,29 @@ export default {
       isshow: false,
     };
   },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    ...mapState({
+      userId: (state) => state.auth.user_id,
+    }),
+  },
   methods: {
     selectItem(i) {
       this.activeItem = i;
       this.isshow = !this.isshow;
+    },
+    del_event(council_id, event_id) {
+      instance
+        .delete("/council/delete_event/" + council_id + "/" + event_id)
+        .then((res) => {
+          console.log(res.data);
+          this.get_events(this.$route.query.id);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     },
     get_events(id) {
       instance

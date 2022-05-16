@@ -2,7 +2,7 @@ import instance from "../axiosConfig";
 export default {
   state: {
     accesstoken: JSON.parse(localStorage.getItem("access_token")) || null,
-    user_id: null,
+    council_id: null,
     loggedIn: false,
     user_type: localStorage.getItem("user_type") || null,
     name: localStorage.getItem("name") || null,
@@ -20,6 +20,9 @@ export default {
     },
     setUserType(state, user_type) {
       state.user_type = user_type;
+    },
+    setCouncilID(state, council_id) {
+      state.council_id = council_id;
     },
     setUserToken(state) {
       state.loggedIn = true;
@@ -52,15 +55,18 @@ export default {
               const usersToken = response.data.token;
               const username = response.data.name;
               const usertype = response.data.user_type;
+              const councilId = response.data.council_id;
               localStorage.setItem("access_token", JSON.stringify(token));
               localStorage.setItem("token", usersToken);
               localStorage.setItem("name", username);
               localStorage.setItem("user_type", usertype);
+              localStorage.setItem("council_id", councilId);
               console.log(localStorage.getItem("token"));
               commit("retrieveToken", token);
               commit("setUserToken", usersToken);
               commit("setUserName", username);
               commit("setUserType", usertype);
+              commit("setCouncilID", councilId);
               resolve(response);
             } else {
               reject(response);

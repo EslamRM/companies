@@ -23,7 +23,7 @@
                     class="shadow img-fluid rounded-xl"
                   />
                 </a>
-                <div class="action">
+                <div class="action" v-if="userId == $route.query.id">
                   <div
                     class="action-icon"
                     role="button"
@@ -68,7 +68,12 @@
                       <li
                         class="pt-0 text-sm border-0 list-group-item ps-0 text-dark"
                       >
-                        <router-link to="">Delete</router-link>
+                        <button
+                          type="button"
+                          @click="del_media($route.query.id, media.id)"
+                        >
+                          Delete
+                        </button>
                       </li>
                     </ul>
                   </div>
@@ -89,6 +94,7 @@
 </template>
 <script>
 import instance from "../../store/axiosConfig.js";
+import { mapState } from "vuex";
 export default {
   name: "gallery",
   data() {
@@ -98,11 +104,29 @@ export default {
       isshow: false,
     };
   },
-
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    ...mapState({
+      userId: (state) => state.auth.user_id,
+    }),
+  },
   methods: {
     selectItem(i) {
       this.activeItem = i;
       this.isshow = !this.isshow;
+    },
+    del_media(council_id, media_id) {
+      instance
+        .delete("/council/delete_media/" + council_id + "/" + media_id)
+        .then((res) => {
+          console.log(res.data);
+          this.get_media(this.$route.query.id);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     },
     get_media(id) {
       instance

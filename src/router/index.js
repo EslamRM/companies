@@ -1,10 +1,15 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
-// import { useToast } from "vue-toastification";
-// const toast = useToast();
-Vue.use(Router);
 
+Vue.use(Router);
+function checkUser(to, from, next) {
+  if (!localStorage.getItem("access_token")) {
+    next({ name: "Login" });
+  } else {
+    next();
+  }
+}
 const router = new Router({
   routes: [
     {
@@ -67,6 +72,7 @@ const router = new Router({
         {
           path: "settings",
           component: () => import("../components/council/settingsMain.vue"),
+          beforeEnter: checkUser,
           children: [
             {
               path: "",

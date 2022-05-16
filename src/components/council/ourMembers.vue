@@ -22,7 +22,7 @@
                     alt="img-blur-shadow"
                     class="shadow img-fluid rounded-xl mx-auto"
                 /></a>
-                <div class="action">
+                <div class="action" v-if="councilId == $route.query.id">
                   <div
                     class="action-icon"
                     role="button"
@@ -73,6 +73,7 @@
                   </div>
                 </div>
                 <UpdateCMLogo
+                  v-if="councilId == $route.query.id"
                   @cmlogo="getLogo($event)"
                   :member_id="member.id"
                 />
@@ -120,6 +121,7 @@
 <script>
 import instance from "../../store/axiosConfig.js";
 import UpdateCMLogo from "../projects/UpdateCMLogo";
+import { mapState } from "vuex";
 export default {
   name: "our-members",
   data() {
@@ -132,6 +134,14 @@ export default {
   },
   components: {
     UpdateCMLogo,
+  },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    ...mapState({
+      councilId: (state) => state.auth.council_id,
+    }),
   },
   methods: {
     getLogo(value) {

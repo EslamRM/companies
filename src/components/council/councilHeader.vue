@@ -5,8 +5,16 @@
       alt="profile_image"
       class="shadow-sm w-full rounded-lg council-banner"
     />
-    <UpdateBanner @banner="getBanner($event)" class="updateBanner" />
-    <UpdateLogo @logo="getLogo($event)" class="updatelogo" />
+    <UpdateBanner
+      @banner="getBanner($event)"
+      class="updateBanner"
+      v-if="councilId == $route.query.id"
+    />
+    <UpdateLogo
+      @logo="getLogo($event)"
+      class="updatelogo"
+      v-if="councilId == $route.query.id"
+    />
     <div class="mx-4 card2 card2-body blur2 shadow-blur mt-n3">
       <div class="row2 gx-4">
         <div class="grid grid-cols-2 lg:grid-cols-2">
@@ -24,15 +32,9 @@
               >
                 {{ $route.query.name }}
               </h5>
-              <!-- <p
-                class="text-sm font-weight-bold text-dark font-general-medium txt-mobile sm:text-sm"
-              >
-                Council Subtitle
-              </p> -->
             </div>
           </div>
         </div>
-
         <div class="mx-auto mt-3 my-sm-auto ms-sm-auto me-sm-0">
           <div class="nav-wrapper relative end-0">
             <ul
@@ -135,7 +137,7 @@
                   ></router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="nav-item" v-if="councilId == $route.query.id">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -162,6 +164,7 @@
 import UpdateLogo from "../projects/UpdateLogo";
 import UpdateBanner from "../projects/UploadBanner";
 import instance from "../../store/axiosConfig.js";
+import { mapState } from "vuex";
 export default {
   name: "council-header",
   data() {
@@ -171,6 +174,14 @@ export default {
     };
   },
   components: { UpdateLogo, UpdateBanner },
+  computed: {
+    currentRouteName() {
+      return this.$route.name;
+    },
+    ...mapState({
+      councilId: (state) => state.auth.council_id,
+    }),
+  },
   methods: {
     check_banner() {
       this.$emit("check", this.banner);
@@ -215,9 +226,16 @@ export default {
 .updatelogo .upload {
   width: 25px;
   height: 25px;
-  left: 85px;
-  margin-top: -13px;
-  z-index: 111;
+  left: 100px;
+  top: 90px;
+  background: #eee;
+  color: #00f;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 3;
 }
 .updatelogo .upload svg {
   width: 15px;
