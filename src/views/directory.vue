@@ -5,6 +5,7 @@
       <DirectoryForm />
       <div
         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 gap-3 sm:gap-3 md:gap-7"
+        v-if="companies"
       >
         <DirectoryCompany
           v-for="company in companies"
@@ -12,6 +13,14 @@
           :company="company"
           class="mb-7"
         />
+      </div>
+      <div class="flex justify-center items-center mt-64" v-else>
+        <Spinner name="line-scale" color="#82a3e0" />
+      </div>
+      <div class="flex justify-center items-center" v-if="companies">
+        <h5 v-if="companies.length == 0" class="mb-1 text-dark">
+          No Companies
+        </h5>
       </div>
     </div>
   </div>

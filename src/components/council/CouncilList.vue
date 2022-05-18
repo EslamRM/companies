@@ -22,7 +22,7 @@
                   }"
                   class="shadow-xl block rounded-xl"
                   ><img
-                    :src="council.logo_image_path"
+                    :src="council.logo.desktop_image"
                     alt="img-blur-shadow"
                     class="shadow img-fluid rounded-xl"
                   />
@@ -65,6 +65,11 @@
     <div class="flex justify-center items-center mt-64" v-else>
       <Spinner name="line-scale" color="#82a3e0" />
     </div>
+    <div class="flex justify-center items-center" v-if="council_companies">
+      <h5 v-if="council_companies.length == 0" class="mb-1 text-dark">
+        No Councils
+      </h5>
+    </div>
   </div>
 </template>
 
@@ -83,7 +88,7 @@ export default {
         .get("public/councils")
         .then((res) => {
           console.log(res.data);
-          this.councils = res.data;
+          this.councils = res.data.data;
         })
         .catch((err) => {
           console.log(err);

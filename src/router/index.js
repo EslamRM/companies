@@ -46,7 +46,7 @@ const router = new Router({
       component: () => import("../views/council.vue"),
       children: [
         {
-          path: "",
+          path: "companies",
           component: () => import("../components/council/ourCompanies.vue"),
         },
         {
@@ -66,7 +66,7 @@ const router = new Router({
           component: () => import("../components/council/ContactUs.vue"),
         },
         {
-          path: "about-us",
+          path: "",
           component: () => import("../components/council/AboutUs.vue"),
         },
         {

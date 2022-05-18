@@ -44,7 +44,7 @@
 
         <div class="uploader-box">
           <div @click="chooseFile" v-if="ShowChooseFile">
-            <div role="button" class="upload">
+            <div role="button" class="upload_cmlogo">
               <input
                 type="file"
                 ref="file"
@@ -300,7 +300,7 @@ export default {
   font-size: 20px;
   margin-left: 2px;
 }
-.upload {
+.upload_cmlogo {
   width: 30px;
   height: 30px;
   background: #eee;
@@ -311,7 +311,7 @@ export default {
   align-items: center;
   position: absolute;
   right: 6px;
-  top: 110px;
+  top: 40px;
 }
 .img-container {
   background: #0000004f;

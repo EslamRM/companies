@@ -8,6 +8,7 @@
       <div class="p-3 card2-body">
         <div
           class="grid sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-7"
+          v-if="members"
         >
           <div
             class="mb-4 mb-xl-0"
@@ -18,7 +19,7 @@
               <div class="relative">
                 <a class="shadow-xl block rounded-xl"
                   ><img
-                    :src="cm_logo ? cm_logo : member.profile_image"
+                    :src="cm_logo ? cm_logo : member.profile.desktop_image"
                     alt="img-blur-shadow"
                     class="shadow img-fluid rounded-xl mx-auto"
                 /></a>
@@ -114,6 +115,12 @@
             </div>
           </div>
         </div>
+        <div class="flex justify-center items-center mt-64" v-else>
+          <Spinner name="line-scale" color="#82a3e0" />
+        </div>
+        <div class="flex justify-center items-center" v-if="members">
+          <h5 v-if="members.length == 0" class="mb-1 text-dark">No Members</h5>
+        </div>
       </div>
     </div>
   </div>
@@ -156,7 +163,7 @@ export default {
         .get("public/council_member/" + id)
         .then((res) => {
           console.log(res.data);
-          this.members = res.data;
+          this.members = res.data.data;
         })
         .catch((err) => {
           console.log(err);

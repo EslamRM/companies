@@ -43,17 +43,33 @@
             >
               <li class="nav-item">
                 <router-link
-                  class="px-0 py-1 mb-0 nav-link active hover:text-indigo-600"
+                  class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
                   :to="{
                     path: '/council/',
                     query: { name: $route.query.name, id: $route.query.id },
                   }"
                   role="tab"
+                  aria-selected="false"
+                  ><span
+                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    >About Us</span
+                  ></router-link
+                >
+              </li>
+              <li class="nav-item">
+                <router-link
+                  class="px-0 py-1 mb-0 nav-link active hover:text-indigo-600"
+                  data-bs-toggle="tab"
+                  :to="{
+                    path: '/council/companies',
+                    query: { name: $route.query.name, id: $route.query.id },
+                  }"
+                  role="tab"
                   aria-selected="true"
                   ><span
                     class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
-                    >Our Companies</span
+                    >Companies</span
                   ></router-link
                 >
               </li>
@@ -69,7 +85,7 @@
                   aria-selected="true"
                   ><span
                     class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
-                    >Our Members</span
+                    >Members</span
                   ></router-link
                 >
               </li>
@@ -118,22 +134,6 @@
                   ><span
                     class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Contact Us</span
-                  ></router-link
-                >
-              </li>
-              <li class="nav-item">
-                <router-link
-                  class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
-                  data-bs-toggle="tab"
-                  :to="{
-                    path: '/council/about-us',
-                    query: { name: $route.query.name, id: $route.query.id },
-                  }"
-                  role="tab"
-                  aria-selected="false"
-                  ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
-                    >About Us</span
                   ></router-link
                 >
               </li>
@@ -197,8 +197,8 @@ export default {
         .get("/public/council/" + id)
         .then((res) => {
           console.log(res.data);
-          this.logo = res.data.logo_image_path;
-          this.banner = res.data.cover_image_path;
+          this.logo = res.data.data.logo.thumbnail_image;
+          this.banner = res.data.data.cover.desktop_image;
           this.check_banner();
         })
         .catch((err) => {

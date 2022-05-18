@@ -8,6 +8,7 @@
       <div class="p-3 card2-body">
         <div
           class="grid sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-7"
+          v-if="council_events"
         >
           <div
             class="mb-4 mb-xl-0"
@@ -18,7 +19,7 @@
               <div class="relative">
                 <a class="shadow-xl block rounded-xl"
                   ><img
-                    :src="event.image_path"
+                    :src="event.event_logo.desktop_image"
                     alt="img-blur-shadow"
                     class="shadow img-fluid rounded-xl"
                   />
@@ -109,6 +110,14 @@
             </div>
           </div>
         </div>
+        <div class="flex justify-center items-center mt-64" v-else>
+          <Spinner name="line-scale" color="#82a3e0" />
+        </div>
+        <div class="flex justify-center items-center" v-if="council_events">
+          <h5 v-if="council_events.length == 0" class="mb-1 text-dark">
+            No Events
+          </h5>
+        </div>
       </div>
     </div>
   </div>
@@ -154,7 +163,7 @@ export default {
         .get("/public/council_event/" + id)
         .then((res) => {
           console.log(res.data);
-          this.council_events = res.data;
+          this.council_events = res.data.data;
         })
         .catch((err) => {
           console.log(err.message);
