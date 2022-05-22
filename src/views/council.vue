@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container p-0 sm:px-0 xl:px-32 mx-auto">
     <CouncilHeader @check="checkBanner($event)" />
     <router-view v-if="checked"></router-view>
     <div class="flex justify-center items-center mt-64" v-else>

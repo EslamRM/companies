@@ -61,7 +61,11 @@
       </div>
 
       <!-- Header links -->
-      <AppHeaderLinks :showModal="showModal" :isOpen="isOpen" />
+      <AppHeaderLinks
+        @closeit="closeMenu2($event)"
+        :showModal="showModal"
+        :isOpen="isOpen"
+      />
 
       <!-- Header right section buttons -->
       <div class="hidden sm:flex justify-between items-center md:flex-row">
@@ -79,11 +83,13 @@
           class="font-general-medium block text-left sm:text-sm md:text-md lg:text-base xl:text-lg font-medium text-primary-dark dark:text-ternary-light hover:text-indigo-600 dark:hover:text-indigo-300 sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
           >Login</router-link
         >
-        <theme-switcher
-          :theme="theme"
-          @themeChanged="updateTheme"
-          class="ml-1 bg-primary-light dark:bg-ternary-dark px-3 py-2 shadow-sm rounded-xl cursor-pointer"
-        />
+        <router-link to="/profile">
+          <img
+            alt=""
+            src=""
+            class="ml-1 bg-primary-light px-3 py-2 shadow-sm rounded-xl cursor-pointer"
+          />
+        </router-link>
       </div>
     </div>
   </nav>
@@ -123,6 +129,10 @@ export default {
     this.theme = localStorage.getItem("theme") || "light";
   },
   methods: {
+    closeMenu2(value) {
+      console.log(value);
+      this.isOpen = value;
+    },
     logout() {
       try {
         this.$store.dispatch("LOGOUT").then((res) => {

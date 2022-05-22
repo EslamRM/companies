@@ -144,7 +144,7 @@ export default {
         })
         .then((res) => {
           console.log(res.data);
-          this.updatedBanner = res.data.cover_image_path;
+          this.updatedBanner = res.data.data.cover.desktop_image;
           localStorage.setItem("banner", res.data.cover_image_path);
           this.getimgbanner();
         })

@@ -7,7 +7,7 @@
       </div>
       <div class="p-3 card2-body">
         <div
-          class="grid sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-7"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 gap-3 sm:gap-3 md:gap-7"
           v-if="members"
         >
           <div

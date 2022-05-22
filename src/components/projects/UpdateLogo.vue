@@ -5,7 +5,21 @@
         <div class="img-container" v-if="isCropped">
           <div class="img-holder">
             <div v-if="isCropped">
-              <Cropper :src="img" @change="change"></Cropper>
+              <Cropper
+                :src="img"
+                @change="change"
+                :stencil-size="{
+                  width: 300,
+                  height: 300,
+                }"
+                :stencil-props="{
+                  handlers: {},
+                  movable: false,
+                  resizable: false,
+                  aspectRatio: 1,
+                }"
+                image-restriction="stencil"
+              />
               <div class="save-image flex justify-between">
                 <button
                   class="text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
@@ -129,7 +143,7 @@ export default {
         })
         .then((res) => {
           console.log(res.data);
-          this.updatedLogo = res.data.logo_image_path;
+          this.updatedLogo = res.data.data.logo.thumbnail_image;
           localStorage.setItem("logo", res.data.logo_image_path);
           this.getimglogo();
         })

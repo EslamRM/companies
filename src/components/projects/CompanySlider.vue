@@ -8,7 +8,7 @@
       >
         <div class="bg-red-100 relative rounded-t-xl">
           <img
-            :src="company.logo"
+            :src="company.logo.desktop_image"
             :alt="company.name"
             class="rounded-t-xl border-none"
           />

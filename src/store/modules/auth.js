@@ -2,7 +2,7 @@ import instance from "../axiosConfig";
 export default {
   state: {
     accesstoken: JSON.parse(localStorage.getItem("access_token")) || null,
-    council_id: null,
+    council_id: localStorage.getItem("council_id") || null,
     loggedIn: false,
     user_type: localStorage.getItem("user_type") || null,
     name: localStorage.getItem("name") || null,

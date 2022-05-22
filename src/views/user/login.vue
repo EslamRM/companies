@@ -14,12 +14,17 @@
           for="name"
           >Username / Email</label
         >
+        <div>
+          <p class="mb-2 text-sm text-red-600 dark:text-red-500">
+            {{ errorMessage }}
+          </p>
+        </div>
         <input
           class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
           id="name"
           name="name"
           v-model="email"
-          type="text"
+          type="email"
           required=""
           placeholder="Your Username/Email"
           aria-label="Name"
@@ -63,6 +68,7 @@ export default {
     return {
       email: null,
       password: null,
+      errorMessage: null,
     };
   },
   computed: {
@@ -82,13 +88,16 @@ export default {
           password: this.password,
         })
         .then((res) => {
-          console.log(res.data);
+          console.log(res);
+          this.errorMessage = res.message;
           this.$router.push({
             name: "Home",
           });
         })
         .catch((err) => {
-          this.error = err.message;
+          this.errorMessage =
+            "Username/Password is incorrect. Please enter correct details.";
+          console.log(err.message);
         });
     },
   },

@@ -6,18 +6,19 @@
       class="shadow-sm w-full rounded-lg council-banner"
     />
     <UpdateBanner
+      v-if="councilId == $route.query.id"
       @banner="getBanner($event)"
       class="updateBanner"
+    /><UpdateLogo
       v-if="councilId == $route.query.id"
-    />
-    <UpdateLogo
       @logo="getLogo($event)"
       class="updatelogo"
-      v-if="councilId == $route.query.id"
     />
-    <div class="mx-4 card2 card2-body blur2 shadow-blur mt-n3">
-      <div class="row2 gx-4">
-        <div class="grid grid-cols-2 lg:grid-cols-2">
+    <div class="mx-4 card2 card2-body blur2 shadow-blur c-header">
+      <div class="grid lg:flex gx-4">
+        <div
+          class="grid sm:grid-cols-1 lg:grid-cols-2 grid-cols-1 mx-auto sm:mr-auto"
+        >
           <div class="avatar avatar-xl relative mx-auto">
             <img
               :src="logo"
@@ -25,7 +26,7 @@
               class="shadow-sm w-full rounded-lg"
             />
           </div>
-          <div class="my-auto">
+          <div class="my-auto c-name">
             <div class="h-full">
               <h5
                 class="mb-1 font-weight-bold text-dark font-general-medium txt-mobile sm:text-sm md:text-md"
@@ -35,10 +36,10 @@
             </div>
           </div>
         </div>
-        <div class="mx-auto mt-3 my-sm-auto ms-sm-auto me-sm-0">
+        <div class="mx-auto my-sm-auto ms-sm-auto me-sm-0">
           <div class="nav-wrapper relative end-0">
             <ul
-              class="p-1 bg-transparent nav nav-pills nav-fill grid grid-cols-3 lg:grid-cols-3 sm:gap-0 md:gap-0 lg:gap-3"
+              class="p-1 m-3 bg-transparent nav nav-pills nav-fill lg:gap-0 gap-3"
               role="tablist"
             >
               <li class="nav-item">
@@ -53,7 +54,7 @@
                   aria-selected="false"
                   ><span
                     class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
-                    >About Us</span
+                    >About</span
                   ></router-link
                 >
               </li>
@@ -133,7 +134,7 @@
                   aria-selected="false"
                   ><span
                     class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
-                    >Contact Us</span
+                    >Contact</span
                   ></router-link
                 >
               </li>
@@ -226,8 +227,8 @@ export default {
 .updatelogo .upload {
   width: 25px;
   height: 25px;
-  left: 100px;
-  top: 90px;
+  left: 51%;
+  top: 120px;
   background: #eee;
   color: #00f;
   border-radius: 50%;
@@ -239,6 +240,18 @@ export default {
 }
 .updatelogo .upload svg {
   width: 15px;
+}
+@media (min-width: 976px) {
+  .c-name {
+    margin-right: -35px;
+  }
+  .updatelogo .upload {
+    left: 11%;
+    top: 100px;
+  }
+  .c-header {
+    margin-top: -20px;
+  }
 }
 @media (max-width: 768px) {
   .council-banner {

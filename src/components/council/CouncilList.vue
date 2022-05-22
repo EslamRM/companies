@@ -6,7 +6,7 @@
       </div>
       <div class="p-3 card2-body">
         <div
-          class="grid sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-7"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 gap-3 sm:gap-3 md:gap-7"
         >
           <div
             class="mb-4 mb-xl-0"
@@ -24,7 +24,7 @@
                   ><img
                     :src="council.logo.desktop_image"
                     alt="img-blur-shadow"
-                    class="shadow img-fluid rounded-xl"
+                    class="shadow w-full img-fluid rounded-xl"
                   />
                 </router-link>
               </div>
@@ -40,20 +40,8 @@
                   <li
                     class="text-sm border-0 list-group-item ps-0 text-dark mb-2"
                   >
-                    <strong class="">Mobile:</strong> &nbsp;
-                    {{ council.mobile_number }}
-                  </li>
-                  <li
-                    class="text-sm border-0 list-group-item ps-0 text-dark mb-2"
-                  >
                     <strong class="text-dark">Email:</strong> &nbsp;
                     {{ council.email }}
-                  </li>
-                  <li
-                    class="text-sm border-0 list-group-item ps-0 text-dark mb-2"
-                  >
-                    <strong class="text-dark">Companies:</strong> &nbsp;
-                    SmartID,BusinessID,Gold Star
                   </li>
                 </ul>
               </div>

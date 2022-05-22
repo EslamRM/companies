@@ -7,7 +7,7 @@
       </div>
       <div class="p-3 card2-body">
         <div
-          class="grid sm:grid-cols-1 xs:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-7"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 gap-3 sm:gap-3 md:gap-7"
           v-if="council_events"
         >
           <div
@@ -21,10 +21,10 @@
                   ><img
                     :src="event.event_logo.desktop_image"
                     alt="img-blur-shadow"
-                    class="shadow img-fluid rounded-xl"
+                    class="shadow img-fluid rounded-xl w-full"
                   />
                 </a>
-                <div class="action" v-if="userId == $route.query.id">
+                <div class="action" v-if="councilId == $route.query.id">
                   <div
                     class="action-icon"
                     role="button"
@@ -139,7 +139,7 @@ export default {
       return this.$route.name;
     },
     ...mapState({
-      userId: (state) => state.auth.user_id,
+      councilId: (state) => state.auth.council_id,
     }),
   },
   methods: {

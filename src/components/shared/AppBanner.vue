@@ -29,7 +29,7 @@
 <script>
 import feather from "feather-icons";
 import BannerSlider from "./bannerSlider";
-import UpdateBanner from "../projects/UpdateLogo";
+import UpdateBanner from "../projects/UploadBanner";
 // url and title must is required
 
 export default {
