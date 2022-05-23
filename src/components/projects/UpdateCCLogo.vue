@@ -112,7 +112,7 @@ export default {
     };
   },
   props: {
-    company_id: String,
+    company_id: Number,
   },
   components: {
     Cropper,

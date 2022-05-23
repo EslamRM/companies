@@ -112,7 +112,7 @@ export default {
     };
   },
   props: {
-    member_id: String,
+    member_id: Number,
   },
   components: {
     Cropper,

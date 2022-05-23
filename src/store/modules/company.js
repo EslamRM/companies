@@ -32,5 +32,18 @@ export default {
           });
       });
     },
+    GETCOMPANYDirectory({ commit }) {
+      return new Promise((resolve, reject) => {
+        instance
+          .get("/public/companies/directory_page")
+          .then((res) => {
+            commit("GET_COMPANY", res.data.data);
+            resolve(res);
+          })
+          .catch((error) => {
+            reject(error);
+          });
+      });
+    },
   },
 };

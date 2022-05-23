@@ -18,41 +18,82 @@
         >
         <UploadImg @src="getimg($event)" />
         <input
+          :class="
+            'name' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           type="text"
           required=""
           v-model="name"
           placeholder="Name"
         />
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.name ? errors.name[0] : "" }}
+        </p>
         <input
+          :class="
+            'designation' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           type="text"
           required=""
           v-model="designation"
           placeholder="designation"
         />
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.designation ? errors.designation[0] : "" }}
+        </p>
         <input
+          :class="
+            'mobile' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           type="tel"
           required=""
           v-model="mobile"
           placeholder="Phone"
         />
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.mobile ? errors.mobile[0] : "" }}
+        </p>
         <input
+          :class="
+            'email' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           type="email"
           required=""
           v-model="email"
           placeholder="Email"
         />
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.email ? errors.email[0] : "" }}
+        </p>
         <input
+          :class="
+            'dob' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light rounded-md shadow-sm text-sm sm:text-md"
           type="date"
           v-model="dob"
           required=""
           placeholder="Birth Date"
         />
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.dob ? errors.dob[0] : "" }}
+        </p>
         <v-select
+          :class="'nationality' in errors ? 'invalid' : ''"
           class="dropdown my-2"
           v-model="nationality"
           :options="options.countries"
@@ -63,7 +104,11 @@
           push-tags
         >
         </v-select>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.nationality ? errors.nationality[0] : "" }}
+        </p>
         <v-select
+          :class="'country_id' in errors ? 'invalid' : ''"
           @option:selected="get_city"
           class="dropdown my-2 text-sm"
           v-model="country"
@@ -75,7 +120,11 @@
           push-tags
         >
         </v-select>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.country_id ? errors.country_id[0] : "" }}
+        </p>
         <v-select
+          :class="'city_id' in errors ? 'invalid' : ''"
           class="dropdown my-2 text-sm"
           @option:selected="get_area"
           v-model="city"
@@ -87,7 +136,11 @@
           push-tags
         >
         </v-select>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.city_id ? errors.city_id[0] : "" }}
+        </p>
         <v-select
+          :class="'area_id' in errors ? 'invalid' : ''"
           class="dropdown my-2 text-sm"
           v-model="area"
           :options="options.areas"
@@ -98,12 +151,15 @@
           push-tags
         >
         </v-select>
+        <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+          {{ errors.area_id ? errors.area_id[0] : "" }}
+        </p>
       </div>
       <div>
         <button
           @click="add_council_member($route.query.id)"
           title="Add"
-          class="px-4 py-2.5 w-full text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+          class="px-4 my-3 py-2.5 w-full text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
           type="button"
           aria-label="Signup"
         >
@@ -121,6 +177,8 @@ export default {
   name: "Settings",
   data() {
     return {
+      errors: {},
+      errorMessage: null,
       options: {
         activities: [],
         countries: [],
@@ -130,7 +188,7 @@ export default {
         issued_by: [],
       },
       name: null,
-      dob: "Birth Date",
+      dob: null,
       nationality: null,
       email: null,
       website: null,
@@ -175,7 +233,9 @@ export default {
           });
         })
         .catch((err) => {
-          console.log(err.message);
+          this.errors = err.response.data.errors;
+          this.errorMessage = err.response.data.message;
+          console.log(err.response.data.message);
         });
     },
     get_country() {

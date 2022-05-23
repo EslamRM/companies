@@ -2,8 +2,8 @@
   <div class="mt-5">
     <div class="mb-4 card2">
       <div class="p-5 pb-0 card-header">
-        <h5 class="mb-1 text-dark">Our Companies</h5>
-        <p class="text-sm text-dark">Activity name</p>
+        <h5 class="mb-1 text-dark">Companies</h5>
+        <!-- <p class="text-sm text-dark">Activity name</p> -->
       </div>
       <div class="p-3 card2-body">
         <div
@@ -99,12 +99,6 @@
                   >
                     <strong class="text-dark">Email:</strong> &nbsp;
                     {{ company.email }}
-                  </li>
-                  <li
-                    class="text-sm border-0 list-group-item ps-0 text-dark mb-2"
-                  >
-                    <strong class="text-dark">Companies:</strong> &nbsp;
-                    SmartID,BusinessID,Gold Star
                   </li>
                 </ul>
               </div>

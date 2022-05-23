@@ -34,6 +34,9 @@ export default {
     destroyToken(state) {
       state.accesstoken = null;
     },
+    destroyCouncilID(state) {
+      state.council_id = null;
+    },
     destroyName(state) {
       state.name = null;
       console.log(state.name);
@@ -87,9 +90,9 @@ export default {
             localStorage.removeItem("access_token");
             localStorage.removeItem("token");
             localStorage.removeItem("name");
-            console.log("logging local storage item");
-            console.log(localStorage.getItem("access_token"));
+            localStorage.removeItem("council_id");
             context.commit("destroyToken");
+            context.commit("destroyCouncilID");
             context.commit("destroyName");
             resolve(response);
           })

@@ -6,25 +6,51 @@
       Add Media
     </p>
     <input
+      :class="
+        'title' in errors
+          ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+          : ''
+      "
       class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
       type="text"
       required=""
       placeholder="Title"
       v-model="title"
     />
+    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+      {{ errors.title ? errors.title[0] : "" }}
+    </p>
     <input
+      :class="
+        'description' in errors
+          ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+          : ''
+      "
       class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
       type="text"
       required=""
       placeholder="Description"
       v-model="description"
     />
+    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+      {{ errors.description ? errors.description[0] : "" }}
+    </p>
     <label
       class="block my-3 text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
       for="name"
       >Add Image</label
     >
-    <UploadImg @file="getimg($event)" />
+    <UploadImg
+      @file="getimg($event)"
+      :class="
+        'file' in errors
+          ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+          : ''
+      "
+    />
+    <p class="mt-2 text-sm text-red-600 dark:text-red-500">
+      {{ errors.file ? errors.file[0] : "" }}
+    </p>
     <div>
       <button
         @click="add_media($route.query.id)"
@@ -44,8 +70,10 @@ export default {
   name: "add-media",
   data() {
     return {
-      title: null,
-      description: null,
+      errors: {},
+      errorMessage: null,
+      title: "",
+      description: "",
       file: null,
     };
   },
@@ -75,7 +103,9 @@ export default {
           });
         })
         .catch((err) => {
-          console.log(err.message);
+          this.errors = err.response.data.errors;
+          this.errorMessage = err.response.data.message;
+          console.log(err.response.data.message);
         });
     },
   },

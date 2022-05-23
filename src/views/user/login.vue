@@ -21,7 +21,7 @@
         </div>
         <input
           :class="
-            'password' in errors
+            'password' in errors || failed
               ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
               : ''
           "
@@ -43,7 +43,7 @@
         >
         <input
           :class="
-            'password' in errors
+            'password' in errors || failed
               ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
               : ''
           "
@@ -80,6 +80,7 @@ export default {
       password: null,
       errorMessage: null,
       errors: {},
+      failed: false,
     };
   },
   computed: {
@@ -106,7 +107,11 @@ export default {
           });
         })
         .catch((err) => {
-          this.errors = err.response.data.errors;
+          if (err.response.data.errors) {
+            this.errors = err.response.data.errors;
+          } else {
+            this.failed = true;
+          }
           if (this.email || this.password) {
             this.errorMessage = err.response.data.message;
           } else {

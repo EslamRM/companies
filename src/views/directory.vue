@@ -52,9 +52,9 @@ export default {
     AppBanner,
   },
   methods: {
-    get_directory(id) {
+    get_directory() {
       try {
-        this.$store.dispatch("GETCOMPANY", id).then((res) => {
+        this.$store.dispatch("GETCOMPANYDirectory").then((res) => {
           console.log(res.data.data);
           this.companies = res.data.data;
         });
@@ -64,7 +64,7 @@ export default {
     },
   },
   mounted() {
-    this.get_directory(3);
+    this.get_directory();
   },
 };
 </script>

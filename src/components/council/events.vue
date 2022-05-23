@@ -3,7 +3,7 @@
     <div class="mb-4 card2">
       <div class="p-5 pb-0 card-header">
         <h5 class="mb-1 text-dark">Events</h5>
-        <p class="text-sm text-dark">Architects design houses</p>
+        <!-- <p class="text-sm text-dark">Architects design houses</p> -->
       </div>
       <div class="p-3 card2-body">
         <div

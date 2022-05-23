@@ -187,25 +187,26 @@ export default {
     },
     get_council(id) {
       instance
-        .get("public/council/" + id)
+        .get("/council/" + id)
         .then((res) => {
           console.log(res.data);
-          this.council_name = res.data.council_name;
-          this.email = res.data.email;
-          this.landline_number = res.data.landline_number;
-          this.phone_number = res.data.mobile_number;
-          this.country = res.data.country.name;
-          this.city = res.data.city.name;
-          this.area = res.data.area.name;
-          this.country_id = res.data.country.id;
-          this.city_id = res.data.city.id;
-          this.area_id = res.data.area.id;
-          this.person_in_charge_name = res.data.person_in_charge_name;
+          this.council_name = res.data.data.council_name;
+          this.email = res.data.data.email;
+          this.landline_number = res.data.data.landline_number;
+          this.phone_number = res.data.data.mobile_number;
+          this.country = res.data.data.country.name;
+          this.city = res.data.data.city.name;
+          this.area = res.data.data.area.name;
+          this.country_id = res.data.data.country.id;
+          this.city_id = res.data.data.city.id;
+          this.area_id = res.data.data.area.id;
+          this.person_in_charge_name = res.data.data.person_in_charge_name;
           this.person_in_charge_designation =
-            res.data.person_in_charge_designation;
-          this.person_in_charge_email = res.data.person_in_charge_email;
-          this.person_in_charge_mobile = res.data.person_in_charge_mobile;
-          this.person_in_charge_country = res.data.person_in_charge_country;
+            res.data.data.person_in_charge_designation;
+          this.person_in_charge_email = res.data.data.person_in_charge_email;
+          this.person_in_charge_mobile = res.data.data.person_in_charge_mobile;
+          this.person_in_charge_country =
+            res.data.data.person_in_charge_country;
         })
         .catch((err) => {
           console.log(err);
