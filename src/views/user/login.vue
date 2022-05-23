@@ -20,6 +20,11 @@
           </p>
         </div>
         <input
+          :class="
+            'password' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
           id="name"
           name="name"
@@ -37,6 +42,11 @@
           >Password</label
         >
         <input
+          :class="
+            'password' in errors
+              ? 'bg-red-50 border border-red-500 text-red-900 placeholder-red-700'
+              : ''
+          "
           class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
           id="email"
           name="email"
@@ -69,6 +79,7 @@ export default {
       email: null,
       password: null,
       errorMessage: null,
+      errors: {},
     };
   },
   computed: {
@@ -95,9 +106,13 @@ export default {
           });
         })
         .catch((err) => {
-          this.errorMessage =
-            "Username/Password is incorrect. Please enter correct details.";
-          console.log(err.message);
+          this.errors = err.response.data.errors;
+          if (this.email || this.password) {
+            this.errorMessage = err.response.data.message;
+          } else {
+            this.errorMessage = "Email and Password is Requird";
+          }
+          console.log(err.response.data.errors);
         });
     },
   },

@@ -14,9 +14,19 @@
           class="mb-7"
         />
       </div>
+
       <div class="flex justify-center items-center mt-64" v-else>
         <Spinner name="line-scale" color="#82a3e0" />
       </div>
+
+      <button
+        v-if="companies"
+        title="Show More"
+        class="text-white mx-auto text-xs sm:text-md txt-mobile2 flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
+      >
+        Show More
+      </button>
+
       <div class="flex justify-center items-center" v-if="companies">
         <h5 v-if="companies.length == 0" class="mb-1 text-dark">
           No Companies
@@ -29,12 +39,11 @@
 import DirectoryCompany from "../components/directory/directoryCompany";
 import DirectoryForm from "../components/directory/directoryForm";
 import AppBanner from "../components/shared/AppBanner";
-
 export default {
   name: "directory",
   data() {
     return {
-      companies: [],
+      companies: null,
     };
   },
   components: {

@@ -5,7 +5,7 @@
     >
       <img
         class="w-full Cimg cursor-pointer"
-        src="../../assets/img/c4.jpg"
+        :src="company.logo.desktop_image"
         alt="Sunset in the mountains"
       />
       <UpdateLogo />
