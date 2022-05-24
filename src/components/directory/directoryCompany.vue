@@ -9,17 +9,16 @@
           :src="company.logo.desktop_image"
           alt="Sunset in the mountains"
       /></a>
-      <UpdateLogo />
-      <div class="px-3 sm:px-4 py-3 sm:py-6 leading-none h-80">
+      <div class="px-3 sm:px-4 py-3 sm:py-6 h-auto sm:h-80">
         <div
-          class="font-general-semibold leading-normal text-sm sm:text-md md:text-base lg:text-lg xl:text-xl text-ternary-dark dark:text-ternary-light font-semibold mb-2"
+          class="font-general-semibold leading-normal text-md md:text-base lg:text-lg xl:text-xl text-ternary-dark dark:text-ternary-light font-semibold mb-2"
         >
           {{ company.name }}
         </div>
         <span
           v-for="(act, index) in company.activity"
           :key="index"
-          class="inline-block pl-4 pr-2 py-2 m-1 justify-between items-center font-general-medium txt-mobile text-xs md:text-md lg:text-base xl:text-xs text-ternary-dark dark:text-ternary-light font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-100 hover:bg-purple-600 hover:text-gray-100"
+          class="inline-block pl-2 pr-2 py-1 m-1 justify-between items-center font-general-medium txt-mobile2 text-xs text-ternary-dark dark:text-ternary-light font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-100 hover:bg-purple-600 hover:text-gray-100"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +36,7 @@
           </svg>
           <span>{{ act.title }}</span>
         </span>
-        <div class="text-xs sm:text-sm md:text-md lg:text-base xl:text-lg">
+        <div class="text-md xl:text-lg overflow-hidden">
           <div
             class="flex justify-start items-center mr-0 sm:mr-1 text-left mb-2"
           >
@@ -47,7 +46,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium txt-mobile text-xs md:text-md lg:text-base xl:text-lg text-ternary-dark dark:text-ternary-light"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
             >
               {{ company.phone_number }}
             </p>
@@ -60,7 +59,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium txt-mobile text-xs md:text-md lg:text-base xl:text-lg text-ternary-dark dark:text-ternary-light"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
             >
               {{ company.email }}
             </p>
@@ -73,7 +72,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium txt-mobile text-xs md:text-md lg:text-base xl:text-lg text-ternary-dark dark:text-ternary-light"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
             >
               <a target="blank" :href="company.website">{{
                 company.website
@@ -88,31 +87,48 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium txt-mobile text-xs md:text-md lg:text-base xl:text-lg text-ternary-dark dark:text-ternary-light"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
             >
-              {{company.city.name}} , {{company.area.name}}
+              {{ company.city.name }} , {{ company.area.name }}
             </p>
           </div>
         </div>
       </div>
       <div
-        class="px-3 sm:px-6 pt-2 sm:pt-4 pb-1 sm:pb-2 bg-gray-200 text-sm font-semibold text-gray-700 cursor-pointer text-center sm:text-center"
+        class="flex justify-center px-1 sm:px-2 pt-2 sm:pt-4 pb-1 sm:pb-2 text-sm font-semibold text-gray-700 cursor-pointer text-center sm:text-center"
       >
-        <span
-          class="inline-block bg-gray-200 txt-mobile text-sm font-semibold text-gray-700"
-          >Shipping Services</span
+        <button
+          :class="
+            company.activePackage[0].name != 'Directory'
+              ? 'text-xs py-2'
+              : 'text-sm py-2.5'
+          "
+          class="col-6 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 m-1 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
         >
+          View Website
+        </button>
+        <button
+          v-if="
+            company.activePackage[0].name == 'Full' ||
+            company.activePackage[0].name == 'Profile'
+          "
+          :class="
+            company.activePackage[0].name != 'Directory'
+              ? 'text-xs py-2'
+              : 'text-sm py-2.5'
+          "
+          class="col-6 w-full ocus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg px-5 m-1 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+        >
+          View Profile
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import UpdateLogo from "../projects/UpdateLogo";
 export default {
   props: ["company"],
-  components: {
-    UpdateLogo,
-  },
+  components: {},
 };
 </script>
 <style>

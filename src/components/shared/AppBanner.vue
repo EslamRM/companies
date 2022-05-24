@@ -21,35 +21,16 @@
 
       <BannerSlider />
     </div>
-    <div>
-      <UpdateBanner />
-    </div>
   </div>
 </template>
 <script>
 import feather from "feather-icons";
 import BannerSlider from "./bannerSlider";
-import UpdateBanner from "../projects/UploadBanner";
-// url and title must is required
 
 export default {
   name: "Home",
-  data: () => {
-    return {
-      theme: "",
-      // slides: [
-      //   "https://source.unsplash.com/random/800x400?i=1",
-      //   "https://source.unsplash.com/random/800x400?i=2",
-      //   "https://source.unsplash.com/random/800x400?i=3",
-      //   "https://source.unsplash.com/random/800x400?i=4",
-      //   "https://source.unsplash.com/random/800x400?i=5",
-      //   "https://source.unsplash.com/random/800x400?i=6",
-      // ],
-    };
-  },
   components: {
     BannerSlider,
-    UpdateBanner,
   },
   created() {
     this.theme = localStorage.getItem("theme") || "light";

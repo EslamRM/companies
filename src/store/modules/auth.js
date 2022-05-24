@@ -6,6 +6,7 @@ export default {
     loggedIn: false,
     user_type: localStorage.getItem("user_type") || null,
     name: localStorage.getItem("name") || null,
+    user_img: localStorage.getItem("user_img") || null,
   },
 
   getters: {
@@ -31,6 +32,9 @@ export default {
     setUserName(state, username) {
       state.name = username;
     },
+    setUserImg(state, user_img) {
+      state.user_img = user_img;
+    },
     destroyToken(state) {
       state.accesstoken = null;
     },
@@ -39,7 +43,9 @@ export default {
     },
     destroyName(state) {
       state.name = null;
-      console.log(state.name);
+    },
+    destroyUserImg(state) {
+      state.user_img = null;
     },
   },
 
@@ -59,17 +65,20 @@ export default {
               const username = response.data.name;
               const usertype = response.data.user_type;
               const councilId = response.data.council_id;
+              const user_img = response.data.profile.thumbnail_image;
               localStorage.setItem("access_token", JSON.stringify(token));
               localStorage.setItem("token", usersToken);
               localStorage.setItem("name", username);
               localStorage.setItem("user_type", usertype);
               localStorage.setItem("council_id", councilId);
+              localStorage.setItem("user_img", user_img);
               console.log(localStorage.getItem("token"));
               commit("retrieveToken", token);
               commit("setUserToken", usersToken);
               commit("setUserName", username);
               commit("setUserType", usertype);
               commit("setCouncilID", councilId);
+              commit("setUserImg", user_img);
               resolve(response);
             } else {
               reject(response);
@@ -91,9 +100,11 @@ export default {
             localStorage.removeItem("token");
             localStorage.removeItem("name");
             localStorage.removeItem("council_id");
+            localStorage.removeItem("user_img");
             context.commit("destroyToken");
             context.commit("destroyCouncilID");
             context.commit("destroyName");
+            context.commit("destroyUserImg");
             resolve(response);
           })
           .catch((error) => {

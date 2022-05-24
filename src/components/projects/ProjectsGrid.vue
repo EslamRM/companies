@@ -1,9 +1,6 @@
 <template>
   <!-- Projects grid -->
   <section class="container mx-auto">
-    <div class="mt-5 sm:mt-5">
-      <DirectoryForm />
-    </div>
     <div
       class="pt-5 sm:pt-14"
       v-for="(company, index) in companies"
@@ -25,48 +22,18 @@
         >
           click to see details
         </h3>
-        <div
-          class="border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
-        >
-          <div class="flex justify-end">
-            <router-link
-              to="/projects"
-              class="flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
-              aria-label="see all"
-            >
-              <Button
-                title="Show More"
-                class="text-white text-xs sm:text-md txt-mobile2"
-              />
-            </router-link>
-          </div>
-        </div>
       </div>
-
-      <!-- Projects grid -->
-      <!-- <div
-        class="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-3 mt-6 gap-1 sm:gap-10"
-      >
-        <ProjectSingle
-          v-for="project in filteredProjects"
-          :key="project.id"
-          :project="project"
-        />
-      </div> -->
       <CompanySlider />
     </div>
   </section>
 </template>
 <script>
 import feather from "feather-icons";
-import ProjectSingle from "./ProjectSingle.vue";
 import CompanySlider from "./CompanySlider";
-import DirectoryForm from "../directory/directoryForm";
 import projects from "../../data/projects";
-import Button from "../reusable/Button.vue";
 
 export default {
-  components: { Button, DirectoryForm, CompanySlider },
+  components: { CompanySlider },
   props: ["singleProjectHeader"],
   data: () => {
     return {
@@ -84,7 +51,6 @@ export default {
     };
   },
   computed: {
-    // Get the filtered projects
     filteredProjects() {
       if (this.selectedCategory) {
         return this.filterProjectsByCategory();
@@ -95,7 +61,6 @@ export default {
     },
   },
   methods: {
-    // Filter projects by category
     filterProjectsByCategory() {
       return this.projects.filter((item) => {
         let category =
@@ -104,7 +69,6 @@ export default {
         return category.includes(this.selectedCategory);
       });
     },
-    // Filter projects by title search
     filterProjectsBySearch() {
       let project = new RegExp(this.searchProject, "i");
       return this.projects.filter((el) => el.title.match(project));

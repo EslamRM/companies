@@ -83,11 +83,17 @@
           class="font-general-medium block text-left sm:text-sm md:text-md lg:text-base xl:text-lg font-medium text-primary-dark dark:text-ternary-light hover:text-indigo-600 dark:hover:text-indigo-300 sm:mx-4 mb-2 sm:py-2 border-t-2 pt-3 sm:pt-2 sm:border-t-0 border-primary-light dark:border-secondary-dark"
           >Login</router-link
         >
-        <router-link to="/profile">
+        <router-link
+          v-if="access"
+          :to="{
+            path: '/council',
+            query: { name: name, id: userId },
+          }"
+        >
           <img
             alt=""
-            src=""
-            class="ml-1 bg-primary-light px-3 py-2 shadow-sm rounded-xl cursor-pointer"
+            :src="userImg"
+            class="rounded-full cursor-pointer h-3/4 w-3/4 shadow-lg"
           />
         </router-link>
       </div>
@@ -119,6 +125,8 @@ export default {
     ...mapState({
       access: (state) => state.auth.accesstoken,
       name: (state) => state.auth.name,
+      userImg: (state) => state.auth.user_img,
+      userId: (state) => state.auth.council_id,
     }),
   },
   created() {

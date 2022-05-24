@@ -161,15 +161,6 @@ const router = new Router({
         title: "Company - Settings",
       },
     },
-    {
-      path: "/register-company",
-      name: "RegisterCompany",
-
-      component: () => import("../views/user/CompanyRegister.vue"),
-      meta: {
-        title: "Company - Register",
-      },
-    },
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {
