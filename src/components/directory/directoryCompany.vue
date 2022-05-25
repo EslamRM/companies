@@ -9,7 +9,9 @@
           :src="company.logo.desktop_image"
           alt="Sunset in the mountains"
       /></a>
-      <div class="px-3 sm:px-4 py-3 sm:py-6 h-auto sm:h-80">
+      <div
+        class="px-3 sm:px-4 py-3 sm:py-6 h-auto sm:h-80 text-center sm:text-left"
+      >
         <div
           class="font-general-semibold leading-normal text-md md:text-base lg:text-lg xl:text-xl text-ternary-dark dark:text-ternary-light font-semibold mb-2"
         >
@@ -18,7 +20,8 @@
         <span
           v-for="(act, index) in company.activity"
           :key="index"
-          class="inline-block pl-2 pr-2 py-1 m-1 justify-between items-center font-general-medium txt-mobile2 text-xs text-ternary-dark dark:text-ternary-light font-medium rounded-xl cursor-pointer bg-purple-500 text-gray-100 hover:bg-purple-600 hover:text-gray-100"
+          style="border: 2px solid #6366f1; color: #000"
+          class="inline-block pl-2 pr-2 py-1 m-1 justify-between items-center font-general-medium txt-mobile2 text-xs font-medium rounded-xl cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +39,9 @@
           </svg>
           <span>{{ act.title }}</span>
         </span>
-        <div class="text-md xl:text-lg overflow-hidden">
+        <div
+          class="text-md xl:text-sm overflow-hidden text-center sm:text-left"
+        >
           <div
             class="flex justify-start items-center mr-0 sm:mr-1 text-left mb-2"
           >
@@ -46,7 +51,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-md"
             >
               {{ company.phone_number }}
             </p>
@@ -59,7 +64,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-md"
             >
               {{ company.email }}
             </p>
@@ -72,7 +77,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-md"
             >
               <a target="blank" :href="company.website">{{
                 company.website
@@ -87,7 +92,7 @@
               class="text-gray-500 icon-size mr-1 sm:mr-2"
             />
             <p
-              class="font-general-medium text-md md:text-base lg:text-md xl:text-xl"
+              class="font-general-medium text-md md:text-base lg:text-md xl:text-md"
             >
               {{ company.city.name }} , {{ company.area.name }}
             </p>
@@ -103,7 +108,7 @@
               ? 'text-xs py-2'
               : 'text-sm py-2.5'
           "
-          class="col-6 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 m-1 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+          class="col-6 w-full text-white text-sm bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg px-5 m-1 mb-2"
         >
           View Website
         </button>
@@ -117,7 +122,7 @@
               ? 'text-xs py-2'
               : 'text-sm py-2.5'
           "
-          class="col-6 w-full ocus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg px-5 m-1 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          class="col-6 w-full text-gray-900 text-sm bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 rounded-lg px-5 m-1 mb-2"
         >
           View Profile
         </button>

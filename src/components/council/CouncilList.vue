@@ -29,7 +29,7 @@
                 </router-link>
               </div>
               <div class="px-1 pb-0 card2-body">
-                <ul class="list-group">
+                <ul class="list-group p-3">
                   <li
                     class="pt-0 text-sm border-0 list-group-item ps-0 text-dark mb-2"
                   >

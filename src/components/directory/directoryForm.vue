@@ -2,42 +2,36 @@
   <div>
     <div class="my-10 sm:mt-20 mb-16 container">
       <div>
-        <div
-          class="flex justify-center items-center gap-3 flex-col sm:flex-row"
-        >
-          <div class="relative mb-2 sm:mb-0 w-full">
-            <v-select
-              :options="cities"
-              @option:selected="get_results"
-              :reduce="(option) => option.id"
-              label="name"
-              placeholder="Emirates"
-              taggable
-              push-tags
-              v-model="selected_emirate"
-              class="dropdown font-general-medium w-full pl-3 pr-1 sm:pr-11 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg txt-mobile sm:text-xs md:text-sm lg:text-md xl:text-base bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-            >
-            </v-select>
-          </div>
-          <div class="relative mb-2 sm:mb-0 w-full">
-            <v-select
-              @search="get_activities($event)"
-              @option:selected="get_results"
-              class="dropdown col-lg col-md-6 col-sm-6 mb-sm-2 mb-xs-2"
-              v-model="selected_activities"
-              :options="activities"
-              :reduce="(option) => option.id"
-              placeholder="Activity"
-              label="title"
-              taggable
-              push-tags
-            >
-            </v-select>
-          </div>
+        <div class="flex justify-center items-center flex-col sm:flex-row">
+          <v-select
+            :options="cities"
+            @option:selected="get_results"
+            :reduce="(option) => option.id"
+            label="name"
+            placeholder="Emirates"
+            taggable
+            push-tags
+            v-model="selected_emirate"
+            class="dropdown w-full sm:w-full font-general-medium mr-0 sm:mr-3 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg txt-mobile sm:text-xs md:text-sm lg:text-md xl:text-base bg-secondary-light"
+          >
+          </v-select>
+          <v-select
+            @search="get_activities($event)"
+            @option:selected="get_results"
+            class="dropdown w-full sm:w-full font-general-medium mr-0 sm:mr-3 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg txt-mobile sm:text-xs md:text-sm lg:text-md xl:text-base bg-secondary-light"
+            v-model="selected_activities"
+            :options="activities"
+            :reduce="(option) => option.id"
+            placeholder="Activity"
+            label="title"
+            taggable
+            push-tags
+          >
+          </v-select>
           <button
             @click="remove_filter()"
             type="button"
-            class="text-gray-900 w-1/5 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+            class="sm:w-full w-full sm:w-1/2 text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5"
           >
             Clear Filter
           </button>
