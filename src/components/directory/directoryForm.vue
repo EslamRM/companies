@@ -148,6 +148,20 @@ export default {
 };
 </script>
 <style>
+.dropdown .vs__search {
+  outline: none !important;
+  border: 0 !important;
+}
+.dropdown .vs__search:focus {
+  outline: none !important;
+  border: 0 !important;
+  color: white !important;
+  box-shadow: none !important;
+  padding-top: 0.5rem !important;
+  padding-right: 0.75rem !important;
+  padding-bottom: 0.5rem !important;
+  padding-left: 0.75rem !important;
+}
 .search-icon {
   width: 43px;
   height: 43px;

@@ -103,12 +103,7 @@
         class="flex justify-center px-1 sm:px-2 pt-2 sm:pt-4 pb-1 sm:pb-2 text-sm font-semibold text-gray-700 cursor-pointer text-center sm:text-center"
       >
         <button
-          :class="
-            company.activePackage[0].name != 'Directory'
-              ? 'text-xs py-2'
-              : 'text-sm py-2.5'
-          "
-          class="col-6 w-full text-white text-sm bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg px-5 m-1 mb-2"
+          class="col-6 w-full text-white text-sm py-2 bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 rounded-lg px-5 m-1 mb-2"
         >
           View Website
         </button>
@@ -117,12 +112,7 @@
             company.activePackage[0].name == 'Full' ||
             company.activePackage[0].name == 'Profile'
           "
-          :class="
-            company.activePackage[0].name != 'Directory'
-              ? 'text-xs py-2'
-              : 'text-sm py-2.5'
-          "
-          class="col-6 w-full text-gray-900 text-sm bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 rounded-lg px-5 m-1 mb-2"
+          class="col-6 w-full text-gray-900 text-sm py-2 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 rounded-lg px-5 m-1 mb-2"
         >
           View Profile
         </button>
