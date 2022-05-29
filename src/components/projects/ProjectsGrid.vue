@@ -1,56 +1,192 @@
 <template>
   <!-- Projects grid -->
   <section class="container mx-auto">
-    <div
-      class="pt-5 sm:pt-14"
-      v-for="(company, index) in companies"
-      :key="index"
-    >
+    <div class="pt-5 sm:pt-14">
       <!-- Projects grid title -->
       <div class="text-center">
         <p
           class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
         >
-          {{ company }}
+          Business Councils
         </p>
       </div>
 
       <!-- Filter and search projects -->
       <div class="mt-3 sm:mb-0 mb-5 sm:mt-10">
-        <h3
-          class="font-general-regular sm:mb-0 mb-4 text-center text-secondary-dark dark:text-ternary-light text-xs sm:text-xl font-normal"
+        <div
+          class="border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
         >
-          click to see details
-        </h3>
+          <div class="flex justify-end">
+            <router-link
+              to="/councils"
+              class="flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
+              aria-label="see all"
+            >
+              <Button
+                title="Show More"
+                class="text-white text-xs sm:text-md txt-mobile2"
+              />
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <BCSlider />
+    </div>
+    <div class="pt-5 sm:pt-14">
+      <!-- Projects grid title -->
+      <div class="text-center">
+        <p
+          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+        >
+          Companies
+        </p>
+      </div>
+
+      <!-- Filter and search projects -->
+      <div class="mt-3 sm:mb-0 mb-5 sm:mt-10">
+        <div
+          class="border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
+        >
+          <div class="flex justify-end">
+            <router-link
+              to="/directory"
+              class="flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
+              aria-label="see all"
+            >
+              <Button
+                title="Show More"
+                class="text-white text-xs sm:text-md txt-mobile2"
+              />
+            </router-link>
+          </div>
+        </div>
       </div>
       <CompanySlider />
+    </div>
+    <div class="pt-5 sm:pt-14">
+      <!-- Projects grid title -->
+      <div class="text-center">
+        <p
+          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+        >
+          Directory
+        </p>
+      </div>
+
+      <!-- Filter and search projects -->
+      <div class="mt-3 sm:mb-0 mb-5 sm:mt-10">
+        <div
+          class="border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
+        >
+          <div class="flex justify-end">
+            <router-link
+              to="/directory"
+              class="flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
+              aria-label="see all"
+            >
+              <Button
+                title="Show More"
+                class="text-white text-xs sm:text-md txt-mobile2"
+              />
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <DirectorySlider />
+    </div>
+    <div class="pt-5 sm:pt-14">
+      <!-- Projects grid title -->
+      <div class="text-center">
+        <p
+          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+        >
+          Events
+        </p>
+      </div>
+
+      <!-- Filter and search projects -->
+      <div class="mt-3 sm:mb-0 mb-5 sm:mt-10">
+        <div
+          class="border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
+        >
+          <div class="flex justify-end">
+            <router-link
+              to="/directory"
+              class="flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
+              aria-label="see all"
+            >
+              <Button
+                title="Show More"
+                class="text-white text-xs sm:text-md txt-mobile2"
+              />
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <EventsSlider />
+    </div>
+    <div class="pt-5 sm:pt-14">
+      <!-- Projects grid title -->
+      <div class="text-center">
+        <p
+          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+        >
+          Media
+        </p>
+      </div>
+
+      <!-- Filter and search projects -->
+      <div class="mt-3 sm:mb-0 mb-5 sm:mt-10">
+        <div
+          class="border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
+        >
+          <div class="flex justify-end">
+            <router-link
+              to="/directory"
+              class="flex items-center px-2 py-1 sm:px-4 sm:py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-sm sm:text-md duration-300"
+              aria-label="see all"
+            >
+              <Button
+                title="Show More"
+                class="text-white text-xs sm:text-md txt-mobile2"
+              />
+            </router-link>
+          </div>
+        </div>
+      </div>
+      <MediaSlider />
     </div>
   </section>
 </template>
 <script>
 import feather from "feather-icons";
 import CompanySlider from "./CompanySlider";
+import BCSlider from "./BCSlider";
+import DirectorySlider from "./DirectorySlider";
+import EventsSlider from "./EventsSlider";
+import MediaSlider from "./MediaSlider";
 import projects from "../../data/projects";
+import Button from "../reusable/Button.vue";
 
 export default {
-  components: { CompanySlider },
+  components: {
+    Button,
+    CompanySlider,
+    BCSlider,
+    DirectorySlider,
+    EventsSlider,
+    MediaSlider,
+  },
   props: ["singleProjectHeader"],
   data: () => {
     return {
       projects,
-      companies: [
-        "Contracting",
-        "Real Estate",
-        "Food",
-        "Foodstuff",
-        "Nuts and Fruits",
-        "Cars",
-      ],
       selectedCategory: "",
       searchProject: "",
     };
   },
   computed: {
+    // Get the filtered projects
     filteredProjects() {
       if (this.selectedCategory) {
         return this.filterProjectsByCategory();
@@ -61,6 +197,7 @@ export default {
     },
   },
   methods: {
+    // Filter projects by category
     filterProjectsByCategory() {
       return this.projects.filter((item) => {
         let category =
@@ -69,6 +206,7 @@ export default {
         return category.includes(this.selectedCategory);
       });
     },
+    // Filter projects by title search
     filterProjectsBySearch() {
       let project = new RegExp(this.searchProject, "i");
       return this.projects.filter((el) => el.title.match(project));

@@ -14,7 +14,7 @@
       @logo="getLogo($event)"
       class="updatelogo"
     />
-    <div class="mx-4 card2 card2-body blur2 shadow-blur c-header">
+    <div class="mx-0 md:mx-4 card2 card2-body blur2 shadow-blur c-header">
       <div class="grid lg:flex gx-4">
         <div
           class="grid sm:grid-cols-1 lg:grid-cols-2 grid-cols-1 mx-auto sm:mr-auto"
@@ -39,10 +39,11 @@
         <div class="mx-auto my-sm-auto ms-sm-auto me-sm-0">
           <div class="nav-wrapper relative end-0">
             <ul
-              class="p-1 m-3 bg-transparent nav nav-pills nav-fill lg:gap-0 gap-3"
+              class="p-1 m-3 bg-transparent nav nav-pills nav-fill flex-row flex lg:gap-0 gap-3 justify-center"
               role="tablist"
             >
-              <li class="nav-item">
+              <!-- grid grid-cols-3 lg:gap-0 gap-6 -->
+              <li class="sm:flex-auto basis-1/4">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -53,12 +54,12 @@
                   role="tab"
                   aria-selected="false"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >About</span
                   ></router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="sm:flex-auto basis-1/4">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link active hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -69,12 +70,12 @@
                   role="tab"
                   aria-selected="true"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Companies</span
                   ></router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="sm:flex-auto basis-1/4">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link active hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -85,12 +86,12 @@
                   role="tab"
                   aria-selected="true"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Members</span
                   ></router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="sm:flex-auto basis-1/4">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -101,12 +102,12 @@
                   role="tab"
                   aria-selected="false"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Events</span
                   ></router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="sm:flex-auto basis-1/4">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -117,12 +118,12 @@
                   role="tab"
                   aria-selected="false"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Media</span
                   ></router-link
                 >
               </li>
-              <li class="nav-item">
+              <li class="sm:flex-auto basis-1/4">
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -133,12 +134,15 @@
                   role="tab"
                   aria-selected="false"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Contact</span
                   ></router-link
                 >
               </li>
-              <li class="nav-item" v-if="councilId == $route.query.id">
+              <li
+                class="sm:flex-auto basis-1/4"
+                v-if="councilId == $route.query.id"
+              >
                 <router-link
                   class="px-0 py-1 mb-0 nav-link hover:text-indigo-600"
                   data-bs-toggle="tab"
@@ -149,7 +153,7 @@
                   role="tab"
                   aria-selected="false"
                   ><span
-                    class="ms-1 font-general-medium block text-left txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
+                    class="ms-1 font-general-medium block text-center txt-mobile sm:text-sm md:text-md lg:text-base xl:text-lg"
                     >Settings</span
                   ></router-link
                 >

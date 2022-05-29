@@ -17,7 +17,7 @@
           <p
             class="font-general-semibold txt-mobile leading-normal text-sm sm:text-xl text-ternary-dark dark:text-ternary-light font-semibold mb-0 sm:mb-2"
           >
-            {{ company.name }}
+            {{ company.council_name }}
           </p>
           <span
             class="font-general-medium txt-mobile2 text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
@@ -29,6 +29,7 @@
   </hooper>
 </template>
 <script>
+import instance from "@/store/axiosConfig";
 import projects from "../../data/projects";
 import { Hooper, Slide } from "hooper";
 import "hooper/dist/hooper.css";
@@ -61,48 +62,21 @@ export default {
     Slide,
     Hooper,
   },
-  computed: {
-    // Get the filtered projects
-    filteredProjects() {
-      if (this.selectedCategory) {
-        return this.filterProjectsByCategory();
-      } else if (this.searchProject) {
-        return this.filterProjectsBySearch();
-      }
-      return this.projects;
-    },
-  },
   methods: {
-    // Filter projects by category
-    filterProjectsByCategory() {
-      return this.projects.filter((item) => {
-        let category =
-          item.category.charAt(0).toUpperCase() + item.category.slice(1);
-        console.log(category);
-        return category.includes(this.selectedCategory);
-      });
-    },
-    // Filter projects by title search
-    filterProjectsBySearch() {
-      let project = new RegExp(this.searchProject, "i");
-      return this.projects.filter((el) => el.title.match(project));
-    },
-    get_company_full(id) {
-      try {
-        this.$store.dispatch("GETCOMPANY", id).then((res) => {
-          console.log(res.data.data);
-          this.companies = [];
-          res.data.data.forEach((company) => {
-            this.companies.push(company);
-          });
+    get_councils() {
+      instance
+        .get("public/councils")
+        .then((res) => {
+          console.log(res.data);
+          this.companies = res.data.data;
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      } catch (err) {
-        console.log(err.message);
-      }
     },
   },
   created() {
-    this.get_company_full([1, 2]);
+    this.get_councils();
   },
 };
 </script>

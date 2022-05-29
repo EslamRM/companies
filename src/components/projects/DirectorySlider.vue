@@ -61,40 +61,11 @@ export default {
     Slide,
     Hooper,
   },
-  computed: {
-    // Get the filtered projects
-    filteredProjects() {
-      if (this.selectedCategory) {
-        return this.filterProjectsByCategory();
-      } else if (this.searchProject) {
-        return this.filterProjectsBySearch();
-      }
-      return this.projects;
-    },
-  },
   methods: {
-    // Filter projects by category
-    filterProjectsByCategory() {
-      return this.projects.filter((item) => {
-        let category =
-          item.category.charAt(0).toUpperCase() + item.category.slice(1);
-        console.log(category);
-        return category.includes(this.selectedCategory);
-      });
-    },
-    // Filter projects by title search
-    filterProjectsBySearch() {
-      let project = new RegExp(this.searchProject, "i");
-      return this.projects.filter((el) => el.title.match(project));
-    },
-    get_company_full(id) {
+    get_directory() {
       try {
-        this.$store.dispatch("GETCOMPANY", id).then((res) => {
-          console.log(res.data.data);
-          this.companies = [];
-          res.data.data.forEach((company) => {
-            this.companies.push(company);
-          });
+        this.$store.dispatch("GETCOMPANYDirectory").then((res) => {
+          this.companies = res.data.data;
         });
       } catch (err) {
         console.log(err.message);
@@ -102,7 +73,7 @@ export default {
     },
   },
   created() {
-    this.get_company_full([1, 2]);
+    this.get_directory();
   },
 };
 </script>
