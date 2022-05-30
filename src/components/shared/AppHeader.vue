@@ -93,7 +93,7 @@
           <img
             alt=""
             :src="userImg"
-            class="rounded-full cursor-pointer h-3/4 w-3/4 shadow-lg"
+            class="rounded-full cursor-pointer w-7 md:w-16 shadow-lg"
           />
         </router-link>
       </div>

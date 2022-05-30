@@ -2,7 +2,7 @@
   <div class="mt-5">
     <div class="mb-4 card2">
       <div class="p-5 pb-0 card-header">
-        <h5 class="mb-1 text-dark">Members</h5>
+        <h6 class="mb-1 text-dark">Members</h6>
         <!-- <p class="text-sm text-dark">Activity name</p> -->
       </div>
       <div class="p-3 card2-body">

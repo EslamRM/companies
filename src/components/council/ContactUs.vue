@@ -4,14 +4,14 @@
       class="leading-loose max-w-xl m-4 p-7 bg-secondary-light dark:bg-secondary-dark rounded-xl text-left card2 mx-auto"
     >
       <p
-        class="font-general-medium text-center text-primary-dark dark:text-primary-light text-lg sm:text-2xl mb-8"
+        class="font-general-medium text-left text-primary-dark dark:text-primary-light text-sm sm:text-lg mb-8"
       >
         Contact Us
       </p>
       <form action="#" class="font-general-regular space-y-7 card2-body">
         <div>
           <label
-            class="block text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
+            class="block text-xs sm:text-md text-primary-dark dark:text-primary-light mb-2"
             for="name"
             >Full Name</label
           >
@@ -27,7 +27,7 @@
         </div>
         <div>
           <label
-            class="block text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
+            class="block text-xs sm:text-md text-primary-dark dark:text-primary-light mb-2"
             for="email"
             >Email</label
           >
@@ -43,7 +43,7 @@
         </div>
         <div>
           <label
-            class="block text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
+            class="block text-xs sm:text-md text-primary-dark dark:text-primary-light mb-2"
             for="subject"
             >Subject</label
           >
@@ -60,7 +60,7 @@
 
         <div>
           <label
-            class="block text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
+            class="block text-xs sm:text-md text-primary-dark dark:text-primary-light mb-2"
             for="message"
             >Message</label
           >
@@ -75,19 +75,17 @@
         </div>
 
         <div>
-          <Button
-            title="Send Message"
-            class="px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+          <button
+            class="text-xs sm:text-md px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
             type="submit"
             aria-label="Send Message"
-          />
+          >
+            Send Message
+          </button>
         </div>
       </form>
     </div>
   </div>
 </template>
-<script>
-import Button from "../reusable/Button.vue";
-export default { components: { Button } };
-</script>
+<script></script>
 <style lang="scss" scoped></style>

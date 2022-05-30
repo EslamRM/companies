@@ -1,5 +1,5 @@
 <template>
-  <div class="container p-0 sm:px-0 xl:px-32 mx-auto">
+  <div class="container mx-auto px-0">
     <CouncilHeader @check="checkBanner($event)" />
     <router-view v-if="checked"></router-view>
     <div class="flex justify-center items-center mt-64" v-else>
@@ -32,4 +32,13 @@ export default {
 </script>
 <style>
 @import "../assets/css/council.css";
+@media (max-width: 976px) {
+  .container {
+    max-width: none;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
 </style>

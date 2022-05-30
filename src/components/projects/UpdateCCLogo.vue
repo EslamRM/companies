@@ -9,14 +9,15 @@
                 :src="img"
                 @change="change"
                 :stencil-size="{
-                  width: 300,
-                  height: 300,
+                  width: 386,
+                  height: 247,
                 }"
                 :stencil-props="{
                   handlers: {},
                   movable: false,
                   resizable: false,
-                  aspectRatio: 1,
+                  minAspectRatio: 73 / 50,
+                  maxAspectRatio: 73 / 50,
                 }"
                 image-restriction="stencil"
               />

@@ -4,7 +4,7 @@
       <div class="mx-auto mt-3">
         <div class="my-auto">
           <div class="h-full">
-            <h5 class="mb-1 text-dark">Alec Thompson</h5>
+            <h6 class="mb-1 text-dark">Alec Thompson</h6>
             <p class="mb-0 text-sm font-weight-bold text-dark">
               CEO / Co-Founder
             </p>

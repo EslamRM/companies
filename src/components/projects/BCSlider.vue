@@ -42,11 +42,8 @@ export default {
       selectedCategory: "",
       searchProject: "",
       settings: {
-        itemsToShow: 2,
+        itemsToShow: 1,
         breakpoints: {
-          400: {
-            itemsToShow: 1,
-          },
           600: {
             itemsToShow: 2,
           },

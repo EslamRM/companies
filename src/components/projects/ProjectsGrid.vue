@@ -1,11 +1,11 @@
 <template>
   <!-- Projects grid -->
-  <section class="container mx-auto">
+  <section class="container mx-auto sm:max-w-none">
     <div class="pt-5 sm:pt-14">
       <!-- Projects grid title -->
       <div class="text-center">
         <p
-          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+          class="font-general-semibold text-base md:text-2xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
         >
           Business Councils
         </p>
@@ -36,7 +36,7 @@
       <!-- Projects grid title -->
       <div class="text-center">
         <p
-          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+          class="font-general-semibold text-base md:text-2xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
         >
           Companies
         </p>
@@ -67,7 +67,7 @@
       <!-- Projects grid title -->
       <div class="text-center">
         <p
-          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+          class="font-general-semibold text-base md:text-2xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
         >
           Directory
         </p>
@@ -98,7 +98,7 @@
       <!-- Projects grid title -->
       <div class="text-center">
         <p
-          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+          class="font-general-semibold text-base md:text-2xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
         >
           Events
         </p>
@@ -129,7 +129,7 @@
       <!-- Projects grid title -->
       <div class="text-center">
         <p
-          class="font-general-semibold text-base sm:text-4xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
+          class="font-general-semibold text-base md:text-2xl font-semibold mb-0 sm:mb-2 text-ternary-dark dark:text-ternary-light"
         >
           Media
         </p>
