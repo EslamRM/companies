@@ -29,21 +29,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Single project objectives -->
-      <div class="mb-7">
-        <p
-          class="font-general-medium text-base sm:text-2xl text-ternary-dark dark:text-ternary-light mb-2"
-        >
-          {{ projectInfo.objectivesHeading }}
-        </p>
-        <p
-          class="font-general-regular text-xs sm:text-lg text-primary-dark dark:text-ternary-light"
-        >
-          {{ projectInfo.objectivesDetails }}
-        </p>
-      </div>
-
       <!-- Single project social sharing -->
       <div>
         <p
@@ -79,6 +64,33 @@
       >
         {{ projectDetail.details }}
       </p>
+      <div class="mb-7">
+        <p
+          class="font-general-medium text-primary-dark dark:text-primary-light text-base sm:text-2xl font-bold mb-7"
+        >
+          {{ projectInfo.objectivesHeading }}
+        </p>
+        <p
+          class="font-general-regular text-primary-dark dark:text-primary-light text-base sm:text-xl font-bold mb-4 pb-2 text-left border-b"
+        >
+          {{ categoryInfo.categoryHeading }}
+        </p>
+        <div class="grid grid-cols-3 sm:grid-cols-4 gap-10">
+          <div v-for="item in categoryInfo.categoryProducts" :key="item.id">
+            <img
+              :src="item.img"
+              class="rounded-xl cursor-pointer"
+              :alt="item.title"
+            />
+            <h5
+              class="font-general-regular text-primary-dark dark:text-primary-light text-sm font-bold my-1 text-left"
+            >
+              {{ item.title }}
+            </h5>
+            <p class="text-sm">{{ item.desc }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -86,7 +98,7 @@
 import feather from "feather-icons";
 
 export default {
-  props: ["projectInfo"],
+  props: ["projectInfo", "categoryInfo"],
 
   mounted() {
     feather.replace();
@@ -96,4 +108,3 @@ export default {
   },
 };
 </script>
-

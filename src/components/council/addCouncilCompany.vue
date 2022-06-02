@@ -388,7 +388,11 @@ export default {
         .then((res) => {
           console.log(res.data);
           this.$router.push({
-            name: "Council",
+            path: "/council/companies",
+            query: {
+              id: this.$route.query.id,
+              name: this.$route.query.name,
+            },
           });
         })
         .catch((err) => {

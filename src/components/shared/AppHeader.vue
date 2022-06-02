@@ -24,12 +24,6 @@
           </router-link>
         </div>
         <div class="flex">
-          <!-- Theme switcher small screen -->
-          <theme-switcher
-            :theme="theme"
-            @themeChanged="updateTheme"
-            class="block sm:hidden bg-ternary-light dark:bg-ternary-dark hover:bg-hover-light dark:hover:bg-hover-dark hover:shadow-sm px-2 py-2.5 rounded-lg"
-          />
           <!-- Small screen hamburger menu -->
           <div class="sm:hidden">
             <button
@@ -101,14 +95,12 @@
   </nav>
 </template>
 <script>
-import ThemeSwitcher from "../ThemeSwitcher";
 import feather from "feather-icons";
 import AppHeaderLinks from "./AppHeaderLinks.vue";
 import { mapState } from "vuex";
 
 export default {
   components: {
-    ThemeSwitcher,
     AppHeaderLinks,
   },
   data() {

@@ -385,7 +385,7 @@ export default {
     margin-right: -35px;
   }
   .updatelogo .upload {
-    left: 8%;
+    left: 5%;
     top: 100px;
   }
   .c-header {

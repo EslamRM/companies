@@ -161,6 +161,24 @@ const router = new Router({
         title: "Company - Settings",
       },
     },
+    {
+      path: "/settings/add-category",
+      name: "AddCategory",
+
+      component: () => import("../components/projects/addCategory.vue"),
+      meta: {
+        title: "Company - Add Category",
+      },
+    },
+    // {
+    //   path: "/test/chat",
+    //   name: "testChat",
+
+    //   component: () => import("../components/shared/testChat.vue"),
+    //   meta: {
+    //     title: "Company - Add Category",
+    //   },
+    // },
   ],
   mode: "history",
   scrollBehavior(to, from, savedPosition) {

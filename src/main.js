@@ -10,7 +10,6 @@ import vSelect from "vue-select";
 import Spinner from "vue-spinkit";
 import VueSweetalert2 from "vue-sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
-
 import "vue-select/dist/vue-select.css";
 const feather = require("feather-icons");
 
@@ -39,3 +38,4 @@ if (
 } else {
   document.querySelector("body").classList.add("bg-secondary-light");
 }
+// window.Swal = Vue.config.globalProperties.$swal;

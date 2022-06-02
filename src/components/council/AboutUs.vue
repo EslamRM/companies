@@ -1,53 +1,35 @@
 <template>
-  <div class="mt-5 mb-5 card2">
+  <div class="mt-5 mb-5 pb-5 card2">
     <div class="about-head row2">
       <div class="mx-auto mt-3">
         <div class="my-auto">
           <div class="h-full">
-            <h6 class="mb-1 text-dark">Alec Thompson</h6>
-            <p class="mb-0 text-sm font-weight-bold text-dark">
-              CEO / Co-Founder
-            </p>
+            <h6 class="mb-1 text-dark">UAE Business Council</h6>
           </div>
         </div>
       </div>
       <div class="container overview">
         <h6>Overview</h6>
         <p>
-          The British Council builds connections, understanding and trust
-          between people in the UK and other countries through arts and culture,
-          education and the English language. We work in two ways – directly
-          with individuals to transform their lives, and with governments and
-          partners to make a bigger difference for the longer term, creating
-          benefit for millions of people all over the world. We help young
-          people to gain the skills, confidence and connections they are looking
-          for to realise their potential and to participate in strong and
-          inclusive communities. We support them to learn English, to get a
-          high-quality education and to gain internationally recognised
-          qualifications. Our work in arts and culture stimulates creative
-          expression and exchange and nurtures creative enterprise. We connect
-          the best of the UK with the world and the best of the world with the
-          UK. These connections lead to an understanding of each other's
-          strengths and of the challenges and values that we share. This builds
-          trust between people in the UK and other nations which endures even
-          when official relations may be strained. We work on the ground in more
-          than 100 countries. In 2019-20 we connected with 80 million people
-          directly and with 791 million overall, including online and through
-          our broadcasts and publications.
+          Dedicated to advancing commercial, trade, and business ties between
+          the U.S. and the U.A.E. By leveraging its extensive networks in the
+          U.S. and in the region, the U.S.-U.A.E. Business Council provides
+          unparalleled access to senior decision makers in business and
+          government with the aim of deepening bilateral trade and investment.
         </p>
       </div>
     </div>
     <div class="sectionBox intro card2-body">
       <div class="introWrap">
-        <ul>
+        <ul class="pb-5">
           <li>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="#344767"
-              stroke-width="2"
+              stroke-width="1"
             >
               <path
                 stroke-linecap="round"
@@ -68,11 +50,11 @@
           <li>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="#344767"
-              stroke-width="2"
+              stroke-width="1"
             >
               <path
                 stroke-linecap="round"
@@ -88,11 +70,11 @@
           <li>
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-6 w-6"
+              class="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="#344767"
-              stroke-width="2"
+              stroke-width="1"
             >
               <path
                 stroke-linecap="round"

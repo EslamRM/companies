@@ -7,10 +7,7 @@
     <!-- <ProjectGallery :projectImages="projectImages" /> -->
     <Swiper />
     <!-- Project information -->
-    <ProjectInfo :projectInfo="projectInfo" />
-
-    <!-- Project related projects -->
-    <ProjectRelatedProjects :relatedProject="relatedProject" />
+    <ProjectInfo :projectInfo="projectInfo" :categoryInfo="categoryInfo" />
   </div>
 </template>
 <script>
@@ -19,7 +16,6 @@ import ProjectHeader from "../components/projects/ProjectHeader.vue";
 // import ProjectGallery from "../components/projects/ProjectGallery.vue";
 import Swiper from "../components/projects/swiper.vue";
 import ProjectInfo from "../components/projects/ProjectInfo.vue";
-import ProjectRelatedProjects from "../components/projects/ProjectRelatedProjects.vue";
 
 export default {
   name: "Projects",
@@ -28,7 +24,6 @@ export default {
     Swiper,
     // ProjectGallery,
     ProjectInfo,
-    ProjectRelatedProjects,
   },
   data: () => {
     return {
@@ -41,17 +36,17 @@ export default {
         {
           id: 1,
           title: "Real Estate",
-          img: require("@/assets/img/Contracting.jpg"),
+          img: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fblog.hubspot.com%2Fsales%2Freal-estate-business&psig=AOvVaw2VvE66rwutLGEOWEuEDE26&ust=1654239321584000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCKi-1--XjvgCFQAAAAAdAAAAABAO",
         },
         {
           id: 2,
           title: "Real Estate",
-          img: require("@/assets/img/Food.jpg"),
+          img: "https://c3c5e8m9.stackpathcdn.com/sites/g/files/aatuss191/files/2018-10/Edelman_Website_Real_Estate_Image_0.jpg",
         },
         {
           id: 3,
           title: "Real Estate",
-          img: require("@/assets/img/real-estate.webp"),
+          img: "http://holrmagazine.com/wp-content/uploads/2022/05/folksgrowth.com-real-estate-business.jpg",
         },
       ],
       projectInfo: {
@@ -81,20 +76,7 @@ export default {
         objectivesHeading: "Categories",
         objectivesDetails:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.",
-        technologies: [
-          {
-            title: "Tools & Technologies",
-            techs: [
-              "HTML",
-              "CSS",
-              "JavaScript",
-              "Vue.js",
-              "TailwindCSS",
-              "AdobeXD",
-            ],
-          },
-        ],
-        projectDetailsHeading: "Challenge",
+        projectDetailsHeading: "About Us",
         projectDetails: [
           {
             id: 1,
@@ -105,16 +87,6 @@ export default {
             id: 2,
             details:
               "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?",
-          },
-          {
-            id: 3,
-            details:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?",
-          },
-          {
-            id: 4,
-            details:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.",
           },
         ],
         socialSharingsHeading: "Follow Us",
@@ -148,6 +120,37 @@ export default {
             name: "Youtube",
             icon: "youtube",
             url: "",
+          },
+        ],
+      },
+      categoryInfo: {
+        categoryHeading: "Real Estate",
+        categoryProducts: [
+          {
+            id: 1,
+            title:
+              "Modernly Designed Real Estate Surrounded by Nature in Alanya",
+            desc: "Lorem ipsum dolor, sit amet consectetur",
+            img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQGJuGT6cIvDI7VJAbuddMJkSijQq6vpLpm57dUeUKLMrq974BmN542rjCOSEJ_YYoP5ABVZjDdUOXtiPeJWQOWog8pLq6UG_ZEtfkK1abA&usqp=CAE",
+          },
+          {
+            id: 2,
+            title:
+              "Real Estate in a Comprehensive Housing Project in North Cyprus",
+            desc: "Lorem ipsum dolor, sit amet consectetur",
+            img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQGBTelIkoJR23dDqbJcaKt9GT1-qxEorTQxGTtX4qxiN1TYVUdcEq4mJ7p9uZypW8CFO1CIaeEuCMiZzjdm5EKNoEsxW6UMgxZXC5cZ0E&usqp=CAE",
+          },
+          {
+            id: 3,
+            title: "Fully Furnished Real Estate in Belek Kadriya",
+            desc: "Lorem ipsum dolor, sit amet consectetur",
+            img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSfCjKYW3BVKXG20R9ep2mAFvvzTAphO-MYWvbQ7Q8JmMnHc9e4LAJZL_l25jMNU8w_mHf5GV6ji0Q3JuNdM-su-cqvtr8tSqJ8fik7qsGX&usqp=CAE",
+          },
+          {
+            id: 4,
+            title: "Antalya Luxury Real Estate with Rich Complex Features",
+            desc: "Lorem ipsum dolor, sit amet consectetur",
+            img: "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQu6xJpYOuq1tvwWi8k28T70UACOK-gyQHojmeIYgLaVMBVWdRrQqC-XsLup6qmYlOADlmmsUkqykLtvb7d-mEpHB65uLmYC0RJcEKqLTmv&usqp=CAE",
           },
         ],
       },

@@ -44,6 +44,12 @@ export default {
           imageUrl:
             "https://avatars3.githubusercontent.com/u/37018832?s=200&v=4",
         },
+        {
+          id: "user2",
+          name: "eslam",
+          imageUrl:
+            "https://avatars3.githubusercontent.com/u/37018832?s=200&v=4",
+        },
       ], // the list of all the participant of the conversation. `name` is the user name, `id` is used to establish the author of a message, `imageUrl` is supposed to be the user avatar.
       titleImageUrl:
         "https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png",
@@ -125,10 +131,10 @@ export default {
 };
 </script>
 <style>
-  .sc-chat-window.opened {
-    bottom: 50px;
-  }
-  @media screen and (max-width: 450px) {
+.sc-chat-window.opened {
+  bottom: 50px;
+}
+@media screen and (max-width: 450px) {
   .sc-chat-window.opened {
     bottom: 0;
   }

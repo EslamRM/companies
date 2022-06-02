@@ -26,22 +26,23 @@ export default {
   name: "swiper",
   data() {
     return {
-      selected: require("@/assets/img/Contracting.jpg"),
+      selected:
+        "http://holrmagazine.com/wp-content/uploads/2022/05/folksgrowth.com-real-estate-business.jpg",
       projectImages: [
         {
           id: 1,
           title: "Real Estate",
-          img: require("@/assets/img/Contracting.jpg"),
+          img: "https://blog.hubspot.com/hubfs/Sales_Blog/real-estate-business-compressor.jpg",
         },
         {
           id: 2,
           title: "Real Estate",
-          img: require("@/assets/img/Food.jpg"),
+          img: "https://c3c5e8m9.stackpathcdn.com/sites/g/files/aatuss191/files/2018-10/Edelman_Website_Real_Estate_Image_0.jpg",
         },
         {
           id: 3,
           title: "Real Estate",
-          img: require("@/assets/img/real-estate.webp"),
+          img: "http://holrmagazine.com/wp-content/uploads/2022/05/folksgrowth.com-real-estate-business.jpg",
         },
       ],
     };
