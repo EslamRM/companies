@@ -7,7 +7,7 @@
       </div>
       <div class="p-3 card2-body">
         <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 gap-3 sm:gap-3 md:gap-7"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 mt-6 gap-3 sm:gap-3 md:gap-7"
           v-if="council_media"
         >
           <div
@@ -80,11 +80,13 @@
                   </div>
                 </div>
               </div>
-              <div class="px-1 pb-0 card2-body">
-                <h5>{{ media.title }}</h5>
-                <p class="mb-2 text-sm text-gradient text-dark">
-                  {{ media.description }}
-                </p>
+              <div class="card2-body">
+                <div class="p-2">
+                  <h5>{{ media.title }}</h5>
+                  <p class="mb-2 text-sm text-gradient text-dark">
+                    {{ media.description }}
+                  </p>
+                </div>
               </div>
             </div>
           </div>

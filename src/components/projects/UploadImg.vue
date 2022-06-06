@@ -23,7 +23,7 @@
             </div>
           </div>
 
-          <div v-if="before_crop" class="mb-3">
+          <div v-if="before_crop && !isCropped" class="mb-3">
             <div class="img-selected-wrapper">
               <div
                 class="selected-images"

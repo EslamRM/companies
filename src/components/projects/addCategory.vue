@@ -31,7 +31,7 @@
           @search="getCategories($event)"
           @option:selected="getParentCategories($event.id)"
           v-model="selected_category"
-          class="dropdown my-2"
+          class="dropdown"
           :options="categories"
           :reduce="(option) => option.id"
           label="name"
@@ -53,7 +53,7 @@
         >
           Upload Product Image
         </p>
-        <UploadImg />
+        <UploadImg @src="getProductImg($event)" />
       </div>
       <div>
         <label
@@ -63,12 +63,10 @@
         >
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="name"
-          name="name"
           type="text"
+          v-model="name"
           required=""
           placeholder="Name"
-          aria-label="Name"
         />
       </div>
       <div>
@@ -79,57 +77,83 @@
         >
         <textarea
           class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="about"
-          name="about"
+          v-model="description"
           required=""
           placeholder="About Company"
-          aria-label="Email"
         ></textarea>
       </div>
       <div class="flex justify-between items-center mt-2">
-        <Button
-          title="Save"
+        <button
+          @click="add_product()"
           class="px-4 py-2 text-sm sm:text-base text-gray-900 tracking-wider border-2 border-indigo-500 bg-white hover:text-white hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
-          type="submit"
-          aria-label="Signup"
-        />
-        <Button
-          title="Add"
+          type="button"
+        >
+          Save
+        </button>
+        <button
           class="px-4 mb-2 py-2 text-sm sm:text-base text-gray-900 hover:text-white tracking-wider border-2 border-green-500 bg-white hover:bg-green-500 focus:ring-1 focus:ring-green-600 rounded-lg duration-500"
-          type="submit"
-          aria-label="Signup"
-        />
+          type="button"
+        >
+          Add
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
-import UploadImg from "./UploadImg";
-import Button from "../../components/reusable/Button";
+import UploadImg from "./UploadImg2";
 import VSelect from "vue-select";
 import instance from "@/store/axiosConfig";
 export default {
   name: "add-category",
   data() {
     return {
+      errors: {},
       isCropped: false,
+      selected_category: "",
+      name: "",
+      description: "",
+      productImg: "",
       followUs: [{ url: "" }],
       categories: [],
-      selected_category: "",
       parents: [],
     };
   },
   components: {
     UploadImg,
-    Button,
     VSelect,
   },
   methods: {
+    getProductImg(value) {
+      this.productImg = value;
+    },
     addField(value, fieldType) {
       fieldType.push({ value: "" });
     },
     removeField(index, fieldType) {
       fieldType.splice(index, 1);
+    },
+    add_product() {
+      let formData = new FormData();
+      formData.append("category_id", this.selected_category);
+      formData.append("name", this.name);
+      formData.append("description", this.description);
+      formData.append("image", this.productImg);
+      instance
+        .post("/company/add_product/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.$router.push({
+            path: "/projects/single-project",
+          });
+        })
+        .catch((err) => {
+          this.errors = err.response.data.errors;
+        });
     },
     getCategories(act) {
       instance
@@ -207,6 +231,9 @@ export default {
   background: #6366f1;
   border-radius: 50%;
   color: #fff;
+}
+.dropdown .vs__search {
+  padding: 4px 7px;
 }
 @media screen and (max-width: 300px) {
   .verified {

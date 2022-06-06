@@ -5,15 +5,15 @@
         <div>
           <div v-if="isCropped">
             <Cropper :src="img" @change="change"></Cropper>
-            <div class="save-image d-flex justify-content-between px-3">
+            <div class="save-image flex justify-between px-3">
               <button
-                class="text-sm btn btn-sm btn-success d-flex align-content-center"
+                class="text-sm text-gray-900 hover:text-white tracking-wider border-2 border-green-500 bg-white hover:bg-green-500 focus:ring-1 focus:ring-green-600 rounded-lg duration-500 flex justify-center items-center"
                 @click="saveImage"
               >
                 Save
               </button>
               <button
-                class="text-sm btn btn-sm btn-danger d-flex align-content-center"
+                class="text-sm text-gray-900 hover:text-white tracking-wider border-2 border-red-500 bg-white hover:bg-red-500 focus:ring-1 focus:ring-red-600 rounded-lg duration-500 flex justify-center items-center"
                 @click="CancelCrop"
               >
                 Cancel
@@ -32,7 +32,7 @@
             </div>
           </div>
         </div>
-        <div class="uploader-box">
+        <div class="uploader-box mt-3">
           <div @click="chooseFile" v-if="ShowChooseFile">
             <div
               role="button"
@@ -80,9 +80,10 @@ export default {
       this.$refs.file.click();
     },
     CancelCrop() {
-      this.before_crop = true;
+      this.before_crop = false;
       this.isCropped = false;
       this.ShowChooseFile = true;
+      this.blobUrl = null;
     },
     saveImage() {
       this.before_crop = true;

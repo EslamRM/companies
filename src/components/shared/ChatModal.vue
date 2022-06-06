@@ -27,10 +27,14 @@
   </div>
 </template>
 <script>
+import fire from "./firbase/fire";
 export default {
   name: "chat",
   data() {
     return {
+      userName: "",
+      showMessage: "",
+      to: null,
       participants: [
         {
           id: "user1",
@@ -90,6 +94,20 @@ export default {
     };
   },
   methods: {
+    updateUsername() {
+      this.name = this.userName;
+      console.log(this.userName);
+      this.userName = "";
+    },
+    sendMessage2() {
+      const message = {
+        text: this.showMessage,
+        from: this.name,
+        to: this.to,
+      };
+      fire.database().ref("messages").push(message);
+      this.showMessage = "";
+    },
     sendMessage(text) {
       if (text.length > 0) {
         this.newMessagesCount = this.isChatOpen
@@ -104,6 +122,13 @@ export default {
     },
     onMessageWasSent(message) {
       // called when the user sends a message
+      // const message = {
+      //   text: this.showMessage,
+      //   from: this.name,
+      //   to: this.to,
+      // };
+      fire.database().ref("messages").push(message);
+      this.showMessage = "";
       this.messageList = [...this.messageList, message];
     },
     openChat() {
@@ -127,6 +152,24 @@ export default {
       m.isEdited = true;
       m.data.text = message.data.text;
     },
+  },
+  created() {
+    const itemsRef = fire.database().ref("messages");
+    itemsRef.on("value", (snapshot) => {
+      let data = snapshot.val();
+      let messages = [];
+      Object.keys(data).forEach((key) => {
+        messages.push({
+          id: key,
+          username: data[key].from
+            ? data[key].from
+            : data[key].username || "test",
+          to: data[key].to,
+          text: data[key].text,
+        });
+      });
+      this.messageList = [...this.messageList, messages];
+    });
   },
 };
 </script>

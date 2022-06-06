@@ -25,7 +25,7 @@
       >
         Upload Profile Images Maximum (3)
       </p>
-      <UploadImg />
+      <UploadImg @file="getimgfile($event)" />
       <div>
         <label
           class="block my-3 text-sm sm:text-lg text-primary-dark dark:text-primary-light mb-2"
@@ -34,48 +34,38 @@
         >
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="name"
-          name="name"
+          v-model="name"
           type="text"
           required=""
           placeholder="Name"
-          aria-label="Name"
         />
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="name"
-          name="name"
+          v-model="services"
           type="text"
           required=""
           placeholder="Services"
-          aria-label="Name"
         />
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="name"
-          name="name"
+          v-model="website"
           type="text"
           required=""
           placeholder="Website"
-          aria-label="Name"
         />
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="name"
-          name="name"
+          v-model="phone"
           type="tel"
           required=""
           placeholder="Phone"
-          aria-label="Name"
         />
         <input
           class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="name"
-          name="name"
+          v-model="email"
           type="email"
           required=""
           placeholder="Email"
-          aria-label="Name"
         />
       </div>
       <div
@@ -113,12 +103,10 @@
             </button>
             <input
               class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-              id="name"
-              name="name"
+              v-model="followUs.url"
               type="text"
               required=""
               placeholder="URL"
-              aria-label="Name"
             />
           </div>
         </div>
@@ -131,49 +119,80 @@
         >
         <textarea
           class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-          id="about"
-          name="about"
+          v-model="aboutus"
           required=""
           placeholder="About Company"
-          aria-label="Email"
         ></textarea>
       </div>
       <div>
-        <Button
-          title="Save"
+        <button
+          @click="add_settings()"
           class="px-4 py-2.5 w-full text-sm sm:text-base text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
-          type="submit"
-          aria-label="Signup"
-        />
+          type="button"
+        >
+          Save
+        </button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import UploadImg from "./UploadImg";
-// import UpdateLogo from "./UpdateLogo";
-// import UploadBanner from "./UploadBanner";
-import Button from "../../components/reusable/Button";
+import instance from "@/store/axiosConfig";
 export default {
   name: "Settings",
   data() {
     return {
+      errors: {},
+      imgFile: "",
       isCropped: false,
+      name: "",
+      services: "",
+      website: "",
+      phone: "",
+      email: "",
+      aboutus: "",
       followUs: [{ url: "" }],
     };
   },
   components: {
     UploadImg,
-    Button,
-    // UpdateLogo,
-    // UploadBanner,
   },
   methods: {
+    getimgfile(value) {
+      this.imgFile = value;
+    },
     addField(value, fieldType) {
       fieldType.push({ value: "" });
     },
     removeField(index, fieldType) {
       fieldType.splice(index, 1);
+    },
+    add_settings() {
+      let formData = new FormData();
+      formData.append("name", this.name);
+      formData.append("services", this.services);
+      formData.append("website", this.website);
+      formData.append("phone", this.phone);
+      formData.append("email", this.email);
+      formData.append("social", this.followUs.url);
+      formData.append("aboutus", this.aboutus);
+      formData.append("profile_page_images", this.imgFile);
+      instance
+        .put("/company/profile/", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        })
+        .then((res) => {
+          console.log(res.data);
+          this.$router.push({
+            path: "/projects/single-project",
+          });
+        })
+        .catch((err) => {
+          this.errors = err.response.data.errors;
+        });
     },
   },
 };

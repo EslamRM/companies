@@ -170,6 +170,7 @@ const router = new Router({
         title: "Company - Add Category",
       },
     },
+    // chat
     // {
     //   path: "/test/chat",
     //   name: "testChat",
