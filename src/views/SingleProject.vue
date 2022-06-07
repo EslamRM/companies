@@ -1,33 +1,28 @@
 <template>
   <div class="container mx-auto mt-5 sm:mt-10 sm:mt-20 mb-16">
-    <!-- Project header -->
-    <ProjectHeader :singleProjectHeader="singleProjectHeader" />
-
-    <!-- Project gallery -->
-    <!-- <ProjectGallery :projectImages="projectImages" /> -->
+    <CompanyHeader :singlecompanyHeader="singlecompanyHeader" />
     <Swiper />
-    <!-- Project information -->
-    <ProjectInfo :projectInfo="projectInfo" :categoryInfo="categoryInfo" />
+    <CompanyInfo :CompanyInfo="CompanyInfo" :categoryInfo="categoryInfo" />
   </div>
 </template>
 <script>
 import feather from "feather-icons";
-import ProjectHeader from "../components/projects/ProjectHeader.vue";
 // import ProjectGallery from "../components/projects/ProjectGallery.vue";
 import Swiper from "../components/projects/swiper.vue";
-import ProjectInfo from "../components/projects/ProjectInfo.vue";
-
+import CompanyInfo from "../components/projects/CompanyInfo.vue";
+import instance from "@/store/axiosConfig";
+import CompanyHeader from "@/components/projects/CompanyHeader.vue";
 export default {
   name: "Projects",
   components: {
-    ProjectHeader,
     Swiper,
     // ProjectGallery,
-    ProjectInfo,
+    CompanyInfo,
+    CompanyHeader,
   },
   data: () => {
     return {
-      singleProjectHeader: {
+      singlecompanyHeader: {
         singleProjectTitle: "Real Estate company",
         singleProjectDate: "Jul 26, 2021",
         singleProjectTag: "Real Estate",
@@ -49,7 +44,7 @@ export default {
           img: "http://holrmagazine.com/wp-content/uploads/2022/05/folksgrowth.com-real-estate-business.jpg",
         },
       ],
-      projectInfo: {
+      CompanyInfo: {
         clientHeading: "About Company",
         companyInfos: [
           {
@@ -154,40 +149,27 @@ export default {
           },
         ],
       },
-      relatedProject: {
-        relatedProjectsHeading: "Related Companies",
-        relatedProjects: [
-          {
-            id: 1,
-            title: "Mobile UI",
-            img: require("@/assets/img/mobile-project-1.jpg"),
-          },
-          {
-            id: 2,
-            title: "Web Application",
-            img: require("@/assets/img/web-project-1.jpg"),
-          },
-          {
-            id: 3,
-            title: "UI Design",
-            img: require("@/assets/img/ui-project-2.jpg"),
-          },
-          {
-            id: 4,
-            title: "Kabul Mobile App UI",
-            img: require("@/assets/img/mobile-project-2.jpg"),
-          },
-        ],
-      },
     };
   },
   mounted() {
     feather.replace();
+    this.getProfile(223);
   },
   updated() {
     feather.replace();
   },
-  methods: {},
+  methods: {
+    getProfile(id) {
+      instance
+        .get("public/company_profile/" + id)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 

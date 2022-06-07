@@ -4,7 +4,7 @@
       <div class="mx-auto mt-3">
         <div class="my-auto">
           <div class="h-full">
-            <h6 class="mb-1 text-dark">UAE Business Council</h6>
+            <h6 class="mb-1 text-dark">{{ $route.query.name }}</h6>
           </div>
         </div>
       </div>

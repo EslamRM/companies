@@ -10,7 +10,7 @@
       <p
         class="font-general-medium text-left xl-text-4xl lg:text-3xl md:text-xl sm:text-md font-bold text-primary-dark dark:text-primary-light mt-14 sm:mt-20 mb-7"
       >
-        {{ singleProjectHeader.singleProjectTitle }}
+        {{ singlecompanyHeader.singleProjectTitle }}
       </p>
       <div class="verified mt-9 sm:mt-16 ml-1 sm:ml-3">
         <span>✔</span>
@@ -25,7 +25,7 @@
         ></i>
         <span
           class="font-general-medium ml-1 sm:ml-2 text-xs sm:text-md txt-mobile2 leading-none text-primary-dark dark:text-primary-light"
-          >{{ singleProjectHeader.singleProjectDate }}</span
+          >{{ singlecompanyHeader.singleProjectDate }}</span
         >
       </div>
       <div class="flex items-center">
@@ -35,7 +35,7 @@
         ></i>
         <span
           class="font-general-medium ml-1 sm:ml-2 text-xs sm:text-md txt-mobile2 leading-none text-primary-dark dark:text-primary-light"
-          >{{ singleProjectHeader.singleProjectTag }}</span
+          >{{ singlecompanyHeader.singleProjectTag }}</span
         >
       </div>
       <div class="ml-10 flex items-center" role="button">
@@ -70,7 +70,7 @@
 <script>
 import Chat from "../shared/ChatModal";
 export default {
-  props: ["singleProjectHeader"],
+  props: ["singlecompanyHeader"],
   data() {
     return {
       open: false,

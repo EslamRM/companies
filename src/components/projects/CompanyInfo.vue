@@ -7,12 +7,12 @@
         <p
           class="font-general-medium text-base sm:text-2xl text-secondary-dark dark:text-secondary-light mb-2"
         >
-          {{ projectInfo.clientHeading }}
+          {{ CompanyInfo.clientHeading }}
         </p>
         <ul class="leading-loose">
           <li
-            v-for="info in projectInfo.companyInfos"
-            :key="info"
+            v-for="info in CompanyInfo.companyInfos"
+            :key="info.id"
             class="font-general-regular text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
           >
             <span>{{ info.title }}: </span>
@@ -34,11 +34,11 @@
         <p
           class="font-general-medium text-base sm:text-2xl text-ternary-dark dark:text-ternary-light mb-2"
         >
-          {{ projectInfo.socialSharingsHeading }}
+          {{ CompanyInfo.socialSharingsHeading }}
         </p>
         <div class="flex items-center gap-3 mt-5">
           <a
-            v-for="social in projectInfo.socialSharings"
+            v-for="social in CompanyInfo.socialSharings"
             :key="social.id"
             :href="social.url"
             target="__blank"
@@ -55,10 +55,10 @@
       <p
         class="font-general-medium text-primary-dark dark:text-primary-light text-base sm:text-2xl font-bold mb-7"
       >
-        {{ projectInfo.projectDetailsHeading }}
+        {{ CompanyInfo.projectDetailsHeading }}
       </p>
       <p
-        v-for="projectDetail in projectInfo.projectDetails"
+        v-for="projectDetail in CompanyInfo.projectDetails"
         :key="projectDetail.id"
         class="font-general-regular mb-5 text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
       >
@@ -68,7 +68,7 @@
         <p
           class="font-general-medium text-primary-dark dark:text-primary-light text-base sm:text-2xl font-bold mb-7"
         >
-          {{ projectInfo.objectivesHeading }}
+          {{ CompanyInfo.objectivesHeading }}
         </p>
         <p
           class="font-general-regular text-primary-dark dark:text-primary-light text-base sm:text-xl font-bold mb-4 pb-2 text-left border-b"
@@ -98,7 +98,7 @@
 import feather from "feather-icons";
 
 export default {
-  props: ["projectInfo", "categoryInfo"],
+  props: ["CompanyInfo", "categoryInfo"],
 
   mounted() {
     feather.replace();

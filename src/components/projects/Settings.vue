@@ -93,7 +93,7 @@
           <button @click="addField(followUs[0], followUs)" class="plus">
             +
           </button>
-          <div v-for="(url, index) in followUs" :key="index">
+          <div v-for="(follow, index) in followUs" :key="index">
             <button
               v-if="followUs.length > 1"
               @click="removeField(index, followUs)"
@@ -103,7 +103,7 @@
             </button>
             <input
               class="w-full my-2 px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-sm sm:text-md"
-              v-model="followUs.url"
+              v-model="follow.url"
               type="text"
               required=""
               placeholder="URL"
@@ -169,17 +169,21 @@ export default {
       fieldType.splice(index, 1);
     },
     add_settings() {
+      console.log(this.followUs);
       let formData = new FormData();
       formData.append("name", this.name);
       formData.append("services", this.services);
       formData.append("website", this.website);
       formData.append("phone", this.phone);
       formData.append("email", this.email);
-      formData.append("social", this.followUs.url);
+
+      this.followUs.forEach((item) => {
+        formData.append("social[]", item.url);
+      });
       formData.append("aboutus", this.aboutus);
-      formData.append("profile_page_images", this.imgFile);
+      formData.append("profile_page_images[]", this.imgFile);
       instance
-        .put("/company/profile/", formData, {
+        .post("/company/profile/", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
