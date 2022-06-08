@@ -4,7 +4,7 @@ import router from "../router";
 import store from "./index";
 const token = localStorage.getItem("token");
 const instance = axios.create({
-  baseURL: "https://test---companies-guide-ca4jc73kxa-uc.a.run.app/api/api/",
+  baseURL: "https://companies-guide-ca4jc73kxa-uc.a.run.app/api/api/",
 });
 console.log("config", token);
 instance.interceptors.request;

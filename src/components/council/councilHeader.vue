@@ -85,7 +85,7 @@
         <div class="mx-auto my-sm-auto ms-sm-auto me-sm-0">
           <div class="nav-wrapper relative end-0">
             <ul
-              class="bg-transparent nav nav-pills nav-fill justify-center items-center gap-3 sm:gap-12 md:gap-3 lg:gap-0"
+              class="bg-transparent c-links nav nav-pills nav-fill justify-center items-center gap-3 sm:gap-12 md:gap-3 lg:gap-0"
               role="tablist"
             >
               <!-- grid grid-cols-3 lg:gap-0 gap-6 -->
@@ -399,8 +399,8 @@ export default {
   .council-banner {
     height: 150px;
   }
-  .nav-link {
-    padding: 0;
+  .c-links .nav-link {
+    padding: 0 !important;
   }
   .container {
     max-width: none;

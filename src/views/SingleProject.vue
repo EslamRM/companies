@@ -1,5 +1,7 @@
 <template>
-  <div class="container mx-auto mt-5 sm:mt-10 sm:mt-20 mb-16">
+  <div
+    class="container profile px-3 md:px-0 xl:px-28 mx-auto mt-5 sm:mt-10 sm:mt-20 mb-16"
+  >
     <CompanyHeader :singlecompanyHeader="singlecompanyHeader" />
     <Swiper />
     <CompanyInfo :CompanyInfo="CompanyInfo" :categoryInfo="categoryInfo" />
@@ -46,44 +48,16 @@ export default {
       ],
       CompanyInfo: {
         clientHeading: "About Company",
-        companyInfos: [
-          {
-            id: 1,
-            title: "Name",
-            details: "Company Ltd",
-          },
-          {
-            id: 2,
-            title: "Services",
-            details: "Real Estate",
-          },
-          {
-            id: 3,
-            title: "Website",
-            details: "https://company.com",
-          },
-          {
-            id: 4,
-            title: "Phone",
-            details: "555 8888 888",
-          },
-        ],
+        name: "",
+        email: "",
+        phone: "",
+        website: "",
+        services: "",
         objectivesHeading: "Categories",
         objectivesDetails:
           "Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, natus! Quibusdam enim quod in esse, mollitia molestias incidunt quas ipsa accusamus veniam.",
         projectDetailsHeading: "About Us",
-        projectDetails: [
-          {
-            id: 1,
-            details:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt totam dolorum, ducimus obcaecati, voluptas facilis molestias nobis ut quam natus similique inventore excepturi optio ipsa deleniti fugit illo. Unde, amet! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum illo necessitatibus perspiciatis! Aperiam perferendis labore temporibus, eos culpa corporis recusandae quas, fuga voluptatibus nesciunt odit libero tenetur neque consequatur ea.",
-          },
-          {
-            id: 2,
-            details:
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nihil vel illum asperiores dignissimos cumque quibusdam et fugiat voluptatem nobis suscipit explicabo, eaque consequatur nesciunt, fugit eligendi corporis laudantium adipisci soluta?",
-          },
-        ],
+        projectDetails: "",
         socialSharingsHeading: "Follow Us",
         socialSharings: [
           {
@@ -164,6 +138,11 @@ export default {
         .get("public/company_profile/" + id)
         .then((res) => {
           console.log(res.data);
+          this.CompanyInfo.name = res.data.data.business_name;
+          this.CompanyInfo.email = res.data.data.email;
+          this.CompanyInfo.phone = res.data.data.phone_number;
+          this.CompanyInfo.website = res.data.data.website;
+          this.CompanyInfo.projectDetails = res.data.data.aboutus;
         })
         .catch((err) => {
           console.log(err);
@@ -173,4 +152,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style>
+@media screen and (max-width: 768px) {
+  .profile {
+    max-width: none;
+  }
+}
+</style>

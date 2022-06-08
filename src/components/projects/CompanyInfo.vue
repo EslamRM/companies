@@ -11,21 +11,44 @@
         </p>
         <ul class="leading-loose">
           <li
-            v-for="info in CompanyInfo.companyInfos"
-            :key="info.id"
             class="font-general-regular text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
           >
-            <span>{{ info.title }}: </span>
-            <a
-              href="#"
-              :class="
-                info.title == 'Website' || info.title == 'Phone'
-                  ? 'hover:underline cursor-pointer'
-                  : ''
-              "
-              aria-label="Project Website and Phone"
-              >{{ info.details }}</a
+            <span>Name: </span>
+            <a href="#" aria-label="Project Website and Phone">{{
+              CompanyInfo.name
+            }}</a>
+          </li>
+          <li
+            class="font-general-regular text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
+          >
+            <span>Email: </span>
+            <a href="#" aria-label="Project Website and Phone">{{
+              CompanyInfo.email
+            }}</a>
+          </li>
+          <li
+            class="font-general-regular text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
+          >
+            <span>Phone: </span>
+            <a href="#" aria-label="Project Website and Phone">{{
+              CompanyInfo.phone
+            }}</a>
+          </li>
+          <li
+            class="font-general-regular text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
+          >
+            <span>Services:</span>
+            <a href="#" aria-label="Project Website and Phone"
+              >{{ CompanyInfo.services }}:</a
             >
+          </li>
+          <li
+            class="font-general-regular text-xs sm:text-lg text-ternary-dark dark:text-ternary-light"
+          >
+            <span>Website: </span>
+            <a href="#" aria-label="Project Website and Phone">{{
+              CompanyInfo.website
+            }}</a>
           </li>
         </ul>
       </div>
@@ -75,7 +98,7 @@
         >
           {{ categoryInfo.categoryHeading }}
         </p>
-        <div class="grid grid-cols-3 sm:grid-cols-4 gap-10">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           <div v-for="item in categoryInfo.categoryProducts" :key="item.id">
             <img
               :src="item.img"

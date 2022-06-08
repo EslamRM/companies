@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="">
     <div class="active flex justify-start mt-7">
       <img
         :src="selected"
@@ -66,10 +66,15 @@ export default {
   border: 2px solid #6366f1;
 }
 .thum-img img {
-  width: 15%;
+  width: 20%;
   margin: 20px;
   display: flex;
   justify-content: space-between;
+}
+@media screen and (min-width: 978px) {
+  .thum-img img {
+    width: 15%;
+  }
 }
 @media screen and (max-width: 600px) {
   .active img {
